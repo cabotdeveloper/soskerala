@@ -1,7 +1,7 @@
 var map;
 
 function drawPins(data) {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: new google.maps.LatLng(10.1059814, 76.3192878)
     });
@@ -152,7 +152,7 @@ $(document).ready(function() {
         $("#lon").val('');
     })
 
-     var table =$('#issue_table').DataTable({
+     var issue_table =$('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php",
         "order": [
             [4, "desc"]
@@ -219,7 +219,16 @@ $(document).ready(function() {
         ]
 
     });
-    
+    $('#issue_table tbody').on('click', 'tr', function () {
+            console.log(data)
+        // if (data['latitude'] && data['longitude']) {
+            var data = issue_table.row( this ).data();
+            console.log(data)
+            var myLatlng = new google.maps.LatLng(data['latitude'], data['longitude']);
+            map.setZoom(17); 
+            map.panTo(myLatlng);
+
+    } );
 });
 function editClick(id){
  //$('#issue_table tbody').on( 'click', 'button', function () {
