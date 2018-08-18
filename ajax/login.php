@@ -12,6 +12,7 @@
     if(count($result)){
         session_start();
         $_SESSION['user_id'] = $result['id'];
+                
         echo "Success";
         return $result;
     }
