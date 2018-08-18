@@ -6,17 +6,29 @@
     $user_name = $_POST['user_name'];
     $password = md5($_POST['password']);
     $user_type = $_POST['user_type'];
-    $db = new SQLite3('../db/rescueDb.db');
-    $sql ="SELECT * FROM users where user_name='".$user_name."' and password='".$password."' and user_type='".$user_type."'";
-    $result = $db->querySingle($sql,true);
-    if(count($result)){
+    if(isset($_SESSION)){
+        session_unset();    
+    }
+    if($user_type == 1){                
         session_start();
-        $_SESSION['user_id'] = $result['id'];
+        $_SESSION['user_type'] = $user_type;
         echo "Success";
-        return $result;
+        exit;
     }
     else{
-        echo "Incorrect login";
-        return ;
+        $db = new SQLite3('../db/rescueDb.db');
+        $sql ="SELECT * FROM users where user_name='".$user_name."' and password='".$password."' and user_type='".$user_type."'";
+        $result = $db->querySingle($sql,true);
+        if(count($result)){
+            session_start();
+            //$_SESSION['user_id'] = $result['id'];
+            $_SESSION['user_type'] = $result['user_type'];
+            echo "Success";
+            exit;
+        }
+        else{
+            echo "Incorrect login";
+            exit;
+        }    
     }    
 ?>
