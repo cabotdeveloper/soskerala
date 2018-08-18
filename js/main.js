@@ -226,6 +226,7 @@ $(document).ready(function() {
         var data = issue_table.row( this ).data();
         if ( data['latitude'] != '' && data['longitude'] != '') {
             var myLatlng = new google.maps.LatLng(data['latitude'], data['longitude']);
+            $('html, body').scrollTop(0);
             map.setZoom(17); 
             map.panTo(myLatlng);
         } else {
@@ -233,6 +234,14 @@ $(document).ready(function() {
         }
 
     } );
+
+    $('#issue_table tbody').on('click', 'td', function (event) {
+        if ($(this).index() == 8 ) { //Edit button at this index
+            event.stopPropagation();
+            return;
+        }
+    });
+
 });
 function editClick(id){
  //$('#issue_table tbody').on( 'click', 'button', function () {
