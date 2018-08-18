@@ -231,7 +231,7 @@ function login(){
             { 
                 alert("An Error Occurred.."); 
             }
-            else { 
+            else {
                 if(result == 'Success'){
                     $("#loggedin_user").text(userName);
                     $("#login_div").hide();

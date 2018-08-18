@@ -14,13 +14,10 @@
         if(!localStorage.getItem("user_type")){
           $('#loginModal').modal({backdrop: 'static', keyboard: false});
           $('#loginModal').modal('show');
-        }        
-      });
-      // window.onbeforeunload = function() {
-      //     localStorage.removeItem('user_name'); 
-      //     localStorage.removeItem('user_type'); 
-      //     return; 
-      // }; 
+        }
+        else
+          $("#loggedin_user").text(localStorage.getItem("user_name"));        
+      });       
       function getData() {
         $.ajax({
           url: "./ajax/get_all_issues.php",
