@@ -220,13 +220,14 @@ $(document).ready(function() {
 
     });
     $('#issue_table tbody').on('click', 'tr', function () {
-            console.log(data)
-        // if (data['latitude'] && data['longitude']) {
-            var data = issue_table.row( this ).data();
-            console.log(data)
+        var data = issue_table.row( this ).data();
+        if ( data['latitude'] != '' && data['longitude'] != '') {
             var myLatlng = new google.maps.LatLng(data['latitude'], data['longitude']);
             map.setZoom(17); 
             map.panTo(myLatlng);
+        } else {
+            alert("There is no marker pin for this location, because Google API did not provide latitude or longitude for this location");
+        }
 
     } );
 });
