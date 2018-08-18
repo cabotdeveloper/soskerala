@@ -14,13 +14,10 @@
         if(!localStorage.getItem("user_type")){
           $('#loginModal').modal({backdrop: 'static', keyboard: false});
           $('#loginModal').modal('show');
-        }        
-      });
-      window.onbeforeunload = function() {
-          localStorage.removeItem('user_name'); 
-          localStorage.removeItem('user_type'); 
-          return; 
-      }; 
+        }
+        else
+          $("#loggedin_user").text(localStorage.getItem("user_name"));        
+      });       
       function getData() {
         $.ajax({
           url: "./ajax/get_all_issues.php",
@@ -91,7 +88,7 @@
       </div>
     </div>
     <div id="map" style="height:50%; vertical-align:bottom"></div>
-    <div>
+    <div id="logged_dt">
       Logged in as : <span id="loggedin_user"></span> 
       <button id="change_btn" class="btn btn-secondary" onclick="changeUser()">Change user role</button>
       
@@ -110,7 +107,7 @@
           <div class="modal-content">
           
             <div  class="modal-body" style="height:100%">
-                <form action="" id="entryForm" method="post">
+                <form action="" id="entryForm" method="post" onsubmit="event.preventDefault()">
                   <p class="heading">Location Address</p>
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
