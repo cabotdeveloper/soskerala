@@ -115,7 +115,7 @@ input[type=password] {
     font-family: 'Montserrat', sans-serif;
 }
 
-    input[type=submit] {
+input[type=submit] {
     width: 30%;
     /* float:right !important; */
     background-color: #14bdef;
@@ -176,4 +176,7 @@ input[type=submit]:hover {
     padding-top: 3px;
     text-decoration: none;
 
+}
+#change_btn{
+    margin-top: 5px !important;
 }

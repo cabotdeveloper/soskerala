@@ -244,6 +244,8 @@ function login(){
     var userType = $("#user_type :selected").val();    
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
+        localStorage.setItem("user_type", userType);
+        localStorage.setItem("user_name", 'Victim/Guest');
         $('#loginModal').modal('hide');
     }    
     else{
@@ -269,6 +271,8 @@ function login(){
                     $("#loggedin_user").text(userName);
                     $("#login_div").hide();
                     $('#loginModal').modal('hide');
+                    localStorage.setItem("user_type", userType);
+                    localStorage.setItem("user_name", userName);
                     return;
                 }
                 else{
