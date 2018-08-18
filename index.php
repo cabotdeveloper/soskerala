@@ -94,7 +94,7 @@
       </div>
     </div>
     <div id="map" style="height:50%; vertical-align:bottom"></div>
-    <div>
+    <div id="logged_dt">
       Logged in as : <span id="loggedin_user"></span> 
       <button id="change_btn" class="btn btn-secondary" onclick="changeUser()">Change user role</button>
       
