@@ -10,8 +10,10 @@
     $sql ="SELECT * FROM users where user_name='".$user_name."' and password='".$password."' and user_type='".$user_type."'";
     $result = $db->querySingle($sql,true);
     if(count($result)){
+        session_start();
+        $_SESSION['user_id'] = $result['id'];
         echo "Success";
-        return;
+        return $result;
     }
     else{
         echo "Incorrect login";

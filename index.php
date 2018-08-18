@@ -11,9 +11,16 @@
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
       $(window).on('load',function(){
-        $('#loginModal').modal({backdrop: 'static', keyboard: false});
-        $('#loginModal').modal('show');
+        if(!localStorage.getItem("user_type")){
+          $('#loginModal').modal({backdrop: 'static', keyboard: false});
+          $('#loginModal').modal('show');
+        }        
       });
+      window.onbeforeunload = function() {
+          localStorage.removeItem('user_name'); 
+          localStorage.removeItem('user_type'); 
+          return; 
+      }; 
       function getData() {
         $.ajax({
           url: "./ajax/get_all_issues.php",
@@ -92,7 +99,7 @@
     <div id="map" style="height:50%; vertical-align:bottom"></div>
     <div>
       Logged in as : <span id="loggedin_user"></span> 
-      <button id="change_btn" onclick="changeUser()">Change</button>
+      <button id="change_btn" class="btn btn-secondary" onclick="changeUser()">Change user role</button>
       
     </div>
     <div id="infowindow-content">
