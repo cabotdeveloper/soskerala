@@ -203,5 +203,77 @@ function changeStatus(issue_id) {
             }
 
         }
-    });
+    });    
+}
+
+function userChange(){
+    var userType = $("#user_type :selected").val();
+    if(userType != 1){
+      $("#login_div").show();
+    }
+    else{
+      $("#login_div").hide();        
+    }
+}
+function modalClose(){
+    var userType = $("#user_type :selected").val();
+    if(userType == 1){
+        $("#loggedin_user").text('Victim/Guest');
+        $('#loginModal').modal('hide');
+    }
+    else if($("#loggedin_user").text() == ''){
+        alert("Please select any user");
+        return;
+    }
+    else{
+        $('#loginModal').modal('hide');
+        return;
+    }
+}
+function login(){
+    var userType = $("#user_type :selected").val();    
+    if(userType == 1){
+        $("#loggedin_user").text('Victim/Guest');
+        $('#loginModal').modal('hide');
+    }    
+    else{
+        var userName = $("#user_name").val();
+        var password = $("#password").val();
+        if(!userName || !password){
+            alert("Incorrect user name and password");
+            return;
+        }
+        $.post("./ajax/login.php",
+        {
+            user_name : userName,
+            password : password,
+            user_type : userType
+        },
+        function(result,status){
+            if( status.toLowerCase()=="error".toLowerCase() )
+            { 
+                alert("An Error Occurred.."); 
+            }
+            else { 
+                if(result == 'Success'){
+                    $("#loggedin_user").text(userName);
+                    $("#login_div").hide();
+                    $('#loginModal').modal('hide');
+                    return;
+                }
+                else{
+                    alert("Incorrect login");
+                    return;
+                }                
+            }
+        })
+        .fail(function(){ 
+            alert("something went wrong. Please try again");
+            return;
+        });        
+    }        
+}
+function changeUser(){
+    $('#loginModal').modal('show');
+
 }
