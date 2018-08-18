@@ -166,15 +166,19 @@ $(document).ready(function() {
 function changeStatus(issue_id) {
     var issue_status = $('#change_status_'+issue_id+' option:selected').val();
     $.ajax({
-    url: "./ajax/change_status.php&issue_id="+issue_id+"&newStatus="+issue_status+"",
+    url: "./ajax/change_status.php?issue_id="+issue_id+"&newStatus="+issue_status,
     async: true,
     dataType: 'json',
     success: function (data) {
         if (data == 1) {
-        alert("Rescue status saved succesfully");
-        location.reload();
-        } else {
-        alert("Temporarily unable to save the changes. Please try again later.");
+            alert("Rescue status saved succesfully");
+            location.reload();
+        } 
+        else if(data == 0){
+            alert("Temporarily unable to save the changes. Please try again later.");
+        }
+        else{
+            alert("You are unauthorized to do this operation");
         }
     
     }
@@ -185,6 +189,8 @@ function userChange(){
     var userType = $("#user_type option:selected").val();
     if(userType != 1){
       $("#login_div").show();
+      $("#user_name").val('');
+      $("#password").val('');
     }
     else{
       $("#login_div").hide();        
@@ -211,7 +217,9 @@ function login(){
         $("#loggedin_user").text('Victim/Guest');
         localStorage.setItem("user_type", userType);
         localStorage.setItem("user_name", 'Victim/Guest');
-        $('#loginModal').modal('hide');
+        var userName = 'Victim/Guest';
+        var password = '';
+        //$('#loginModal').modal('hide');
     }    
     else{
         var userName = $("#user_name").val();
@@ -219,8 +227,9 @@ function login(){
         if(!userName || !password){
             alert("Incorrect user name and password");
             return;
-        }
-        $.post("./ajax/login.php",
+        }                
+    }
+    $.post("./ajax/login.php",
         {
             user_name : userName,
             password : password,
@@ -249,8 +258,7 @@ function login(){
         .fail(function(){ 
             alert("something went wrong. Please try again");
             return;
-        });        
-    }        
+        });    
 }
 function changeUser(){
     $('#loginModal').modal('show');
