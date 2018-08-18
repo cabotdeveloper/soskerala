@@ -212,10 +212,6 @@ function modalClose(){
 }
 
 function login(){
-<<<<<<< HEAD
-    
-=======
->>>>>>> 74ed6db02a41570e7924df92697a8a83debf576b
     var userType = $("#user_type option:selected").val();    
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
