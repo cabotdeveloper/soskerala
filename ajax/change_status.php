@@ -11,5 +11,5 @@ if (isset($_GET['issue_id']) && isset($_GET['newStatus'])){
     $db->query("COMMIT");
     echo 1;
 } else {
-    return 0;
+    echo 0;
 }
