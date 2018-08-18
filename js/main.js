@@ -6,10 +6,24 @@ var map;
 
 function drawPins(data) {
     var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center: new google.maps.LatLng(10.1059814, 76.3192878)
+        zoom: 10,
+        center: new google.maps.LatLng(10.1059814, 76.3192878)
     });
 
+    var geocoder = new google.maps.Geocoder();
+    google.maps.event.addListener(map, "click", function(event) {
+        geocoder.geocode({
+            'latLng': event.latLng
+        }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    //alert(event.latLng.lat() + " " + event.latLng.lng())                              
+                    $("#user_input_autocomplete_address").val(results[0].formatted_address);
+                    $("#add_button").trigger("click");
+                }
+            }
+        });
+    });
 
     //var marker, i;
     var infoContent = []

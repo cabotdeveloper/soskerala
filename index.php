@@ -23,8 +23,12 @@
             
           }
         }); 
+        //Location autocomplete
         var input = document.getElementById('user_input_autocomplete_address');                 
         new google.maps.places.Autocomplete(input); 
+
+        //Open pop-up on map click
+        
 
       }
 </script>
@@ -42,16 +46,6 @@
     ?>    
     </script>
     <meta charset="utf-8">
-    <script>
-        $(function () {
-            var input = document.getElementById("keyword");
-            var autocomplete = new google.maps.places.Autocomplete(input);
-
-            $('#my-modal').modal('show');
-
-        });
-
-    </script>
     <style>
         .pac-container {
             z-index: 10000 !important;
@@ -68,7 +62,7 @@
           <span id="place-address"></span>
         </div>
         <div>
-          <a data-toggle="modal" data-target="#form" class="float-button" style="cursor:pointer">+</a>
+          <a data-toggle="modal" id="add_button" data-target="#form" class="float-button" style="cursor:pointer">+</a>
         </div>
         <div id="form" class="modal fade">
           <div class="modal-dialog">
