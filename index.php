@@ -16,11 +16,11 @@
           $('#loginModal').modal('show');
         }        
       });
-      window.onbeforeunload = function() {
-          localStorage.removeItem('user_name'); 
-          localStorage.removeItem('user_type'); 
-          return; 
-      }; 
+      // window.onbeforeunload = function() {
+      //     localStorage.removeItem('user_name'); 
+      //     localStorage.removeItem('user_type'); 
+      //     return; 
+      // }; 
       function getData() {
         $.ajax({
           url: "./ajax/get_all_issues.php",
