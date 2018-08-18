@@ -6,9 +6,7 @@
     $user_name = $_POST['user_name'];
     $password = md5($_POST['password']);
     $user_type = $_POST['user_type'];
-    if(isset($_SESSION)){
-        session_unset();    
-    }
+    
     if($user_type == 1){                
         session_start();
         $_SESSION['user_type'] = $user_type;
