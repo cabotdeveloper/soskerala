@@ -125,8 +125,10 @@ function saveEntry(event) {
     var noPersons = $('#no_persons').val();
     var contactName = $('#contact_name').val();
     var contactMobile = $('#contact_mobile').val();
+    var latitude = $("#lat").val();
+    var longitude = $("#lon").val();
     var notes = $('#notes').val();
-    $.post("./ajax/add_issue.php", 'location=' + location + '&noPersons=' + noPersons + '&contactName=' + contactName + '&contactMobile=' + contactMobile + '&notes=' + notes, function(result, status, xhr) {
+    $.post("./ajax/add_issue.php", 'location=' + location + '&noPersons=' + noPersons + '&contactName=' + contactName + '&contactMobile=' + contactMobile + '&notes=' + notes + '&latitude='+latitude+ '&longitude='+ longitude, function(result, status, xhr) {
             if (status.toLowerCase() == "error".toLowerCase()) {
                 alert("An Error Occurred..");
             } else {
@@ -143,7 +145,8 @@ function saveEntry(event) {
 $(document).ready(function() {
     
     $("#user_input_autocomplete_address").change(function(){
-        alert("here");
+        $("#lat").val('');
+        $("#lon").val('');
     })
 
     $('#issue_table').DataTable({
