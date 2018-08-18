@@ -22,16 +22,19 @@
             // })
             
           }
-        });  
+        }); 
+        var input = document.getElementById('user_input_autocomplete_address');                 
+        new google.maps.places.Autocomplete(input); 
+
       }
-    </script>
-    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyC5c7RVG5abNguKbkJbKobTKhOu_pEtk4s&callback=getData" async defer></script>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5c7RVG5abNguKbkJbKobTKhOu_pEtk4s&callback=getData&libraries=places" async defer></script>
     
    
     <?php if (isset($ret) && $ret == 1) { 
       echo "<script>"
     ?> 
-    alert("Issue added successfully.");  
+    alert("Issue added successfully.");  yyyy
     <?php
     echo "</script>";
     echo "<meta http-equiv='refresh' content='0;url=index.php'>";
@@ -39,7 +42,21 @@
     ?>    
     </script>
     <meta charset="utf-8">
-    
+    <script>
+        $(function () {
+            var input = document.getElementById("keyword");
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            $('#my-modal').modal('show');
+
+        });
+
+    </script>
+    <style>
+        .pac-container {
+            z-index: 10000 !important;
+        }
+    </style>
   </head>
   <body>
     <div id="map" style="height:50%; vertical-align:bottom"></div>
@@ -59,8 +76,11 @@
           
             <div  class="modal-body" style="height:100%">
                 <form action="" id="entryForm" method="post">
-                <p class="heading">Location</p>
-                    <input id="location" type="text" placeholder="Enter a location" name="location" required>                    
+                  <p class="heading">Location Address</p>
+ 
+                      <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
+                             placeholder="Start typing your address...">
+                  
                     <p class="heading">Number of persons</p>
                     <input type="text" id="no_persons" name="no_persons">
                     <p class="heading">Contact Person Name</p>
@@ -112,5 +132,6 @@
 
   <script src="./js/main.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/autocomplete.js"></script>
   </body>
 </html>

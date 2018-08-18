@@ -3,74 +3,75 @@ var map;
 
 
 
+
 function drawPins(data) {
-var map = new google.maps.Map(document.getElementById('map'), {
-zoom: 10,
-center: new google.maps.LatLng(10.1059814, 76.3192878)
-});
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: new google.maps.LatLng(10.1059814, 76.3192878)
+    });
 
 
-//var marker, i;
-var infoContent = []
+    //var marker, i;
+    var infoContent = []
 
-for (i = 0; i < data.length; i++) { 
-var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(data[i]['latitude'], data[i]['longitude']),
-    map: map,
-    icon: getIcon(data[i]['issue_status'])
-});
+    for (i = 0; i < data.length; i++) { 
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(data[i]['latitude'], data[i]['longitude']),
+        map: map,
+        icon: getIcon(data[i]['issue_status'])
+    });
 
-var statusText; 
-if (data[i]['issue_status'] == 2) {
-    statusText = "Rescue completed"
-} else if (data[i]['issue_status'] == 1) {
-    statusText = "Rescue In Progress"
-} else {
-    statusText = "To be rescued"
-}
-console.log(data[i]['issue_status']);
-
-var infowindow = new google.maps.InfoWindow();
-
-infoContent[i] = '<div id="content">'+
-    '<div id="siteNotice">'+
-    'Rescue Status:<h2>'+statusText+'</h2>'+
-    '</div>'+
-    '<div id="bodyContent">'+
-    'Location: <b>'+data[i]['location_address']+'</b><br />'+
-    'Contact Person Name: <b>'+data[i]['contact_person_name']+'</b><br />'+
-    'Contact Person Phone: <b>'+data[i]['contact_person_mobile']+'</b><br />'+
-    'Issue reported on: <b>'+data[i]['reported_date']+'</b><br />'+
-    'Issue last updated on: <b>'+data[i]['updated_date']+'</b><br /><br />'+
-    'Additional Notes: <b>'+data[i]['additional_notes']+'</b><br /><br />'+
-    'Change Status: <select id=change_status_'+data[i]['issue_id']+'><option '+((data[i]['issue_status'] == "0")? 'selected':'')+' value=0>To be rescued</option>'+ 
-    '<option '+((data[i]['issue_status'] == "1")? 'selected':'')+' value=1>Rescue In Progress</option>'+
-    '<option '+((data[i]['issue_status'] == "2")? 'selected':'')+' value=2>Rescue completed</option></select>'+
-    '<input type="button" class="changeStatus" onclick=changeStatus('+data[i]['issue_id']+') value="Submit">'+
-    '</div>'+
-    '</div>';
-
-console.log(infoContent[i]);
-
-google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    return function() {
-    infowindow.setContent(infoContent[i]);
-    infowindow.open(map, marker);
+    var statusText; 
+    if (data[i]['issue_status'] == 2) {
+        statusText = "Rescue completed"
+    } else if (data[i]['issue_status'] == 1) {
+        statusText = "Rescue In Progress"
+    } else {
+        statusText = "To be rescued"
     }
-})(marker, i));
-}
+    console.log(data[i]['issue_status']);
 
-function getIcon(issue_status) {
-var icon;
-if (issue_status == 0) {
-icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-} else if (issue_status == 1) {
-icon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-} else if (issue_status == 2) {
-icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-}
-console.log(icon)
-return icon;
+    var infowindow = new google.maps.InfoWindow();
+
+    infoContent[i] = '<div id="content">'+
+        '<div id="siteNotice">'+
+        'Rescue Status:<h2>'+statusText+'</h2>'+
+        '</div>'+
+        '<div id="bodyContent">'+
+        'Location: <b>'+data[i]['location_address']+'</b><br />'+
+        'Contact Person Name: <b>'+data[i]['contact_person_name']+'</b><br />'+
+        'Contact Person Phone: <b>'+data[i]['contact_person_mobile']+'</b><br />'+
+        'Issue reported on: <b>'+data[i]['reported_date']+'</b><br />'+
+        'Issue last updated on: <b>'+data[i]['updated_date']+'</b><br /><br />'+
+        'Additional Notes: <b>'+data[i]['additional_notes']+'</b><br /><br />'+
+        'Change Status: <select id=change_status_'+data[i]['issue_id']+'><option '+((data[i]['issue_status'] == "0")? 'selected':'')+' value=0>To be rescued</option>'+ 
+        '<option '+((data[i]['issue_status'] == "1")? 'selected':'')+' value=1>Rescue In Progress</option>'+
+        '<option '+((data[i]['issue_status'] == "2")? 'selected':'')+' value=2>Rescue completed</option></select>'+
+        '<input type="button" class="changeStatus" onclick=changeStatus('+data[i]['issue_id']+') value="Submit">'+
+        '</div>'+
+        '</div>';
+
+    console.log(infoContent[i]);
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+        infowindow.setContent(infoContent[i]);
+        infowindow.open(map, marker);
+        }
+    })(marker, i));
+    }
+
+    function getIcon(issue_status) {
+    var icon;
+    if (issue_status == 0) {
+    icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+    } else if (issue_status == 1) {
+    icon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+    } else if (issue_status == 2) {
+    icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+    }
+    console.log(icon)
+    return icon;
 }
 
 
@@ -107,7 +108,7 @@ function init_map(data) {
 function saveEntry(event) {
 
     event.preventDefault();
-    var location=$('#location').val();
+    var location=$('#user_input_autocomplete_address').val();
     var noPersons=$('#no_persons').val();
     var contactName=$('#contact_name').val();
     var contactMobile=$('#contact_mobile').val();

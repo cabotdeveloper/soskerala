@@ -14,11 +14,10 @@ if($_POST ){
     $rptTime = date('d-M-Y H:i:s', time());
     $db->query("BEGIN TRANSACTION");
     $sql = "insert into 'issues' ('latitude','longitude','location_address','no_of_persons','contact_person_name','contact_person_mobile','additional_notes','issue_status','reported_date','updated_date') VALUES('".$cordinates['latitude']."','".$cordinates['longitude']."','".$location."','".$data['noPersons']."','".$data['contactName']."','".$data['contactMobile']."','".$data['notes']."',0,'".$rptTime."','".$rptTime."')";    
-    echo $sql;
     $res= $db->query($sql);
     $db->query("COMMIT");
     if(!$res){
-        echo "Error".$db->lastErrorMsg();
+        echo "Error ".$db->lastErrorMsg();
     } 
     else {
         echo "Issue has been saved successfully.";
