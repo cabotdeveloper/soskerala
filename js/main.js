@@ -15,6 +15,8 @@ function drawPins(data) {
                 if (results[0]) {
                     //alert(event.latLng.lat() + " " + event.latLng.lng())                              
                     $("#user_input_autocomplete_address").val(results[0].formatted_address);
+                    $("#lat").val(event.latLng.lat());
+                    $("#lon").val(event.latLng.lng());
                     $("#add_button").trigger("click");
                 }
             }
@@ -139,6 +141,11 @@ function saveEntry(event) {
 }
 
 $(document).ready(function() {
+    
+    $("#user_input_autocomplete_address").change(function(){
+        alert("here");
+    })
+
     $('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php",
         "order": [

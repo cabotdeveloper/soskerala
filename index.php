@@ -84,6 +84,8 @@
                     <p class="heading">Notes</p>
                     <textarea id = "notes" name="notes"></textarea>
                     <input type="button"  value="Cancel" class="btn-secondary" data-dismiss="modal">
+                    <input type="hidden" id="lat" name="lat">
+                    <input type="hidden" id="lon" name="lon">
                     <input type="submit" onclick="saveEntry(event)" value="Submit" class="btn-primary">
                     
                 </form>            
@@ -126,6 +128,5 @@
 
   <script src="./js/main.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./js/autocomplete.js"></script>
   </body>
 </html>
