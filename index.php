@@ -138,7 +138,7 @@
 
     
   
-    <table id="issue_table" class="display" style="width:100%; font-size:12px; margin-top:20px;">
+    <table id="issue_table" class="display dataTable table-bordered" style="width:100%; font-size:12px; margin-top:20px;">
       <thead>
           <tr>
               <th>Location</th>
