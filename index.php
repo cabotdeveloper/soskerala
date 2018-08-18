@@ -166,7 +166,7 @@
                     <input type="button"  value="Cancel" class="btn-secondary" data-dismiss="modal">
                     
                     <input type="submit" onclick="editEntry(event)" value="Save" class="btn-primary">
-                    
+                    <input type="button" class="btn btn-danger" onclick="deleteIssueId()" value="Delete">
                 </form>            
             
             
