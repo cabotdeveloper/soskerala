@@ -177,6 +177,9 @@ $(document).ready(function() {
                 "data": "updated_date"
             },
             {
+                "data": "reported_by"
+            },
+            {
                 "data": "issue_status"
             },
             { 
@@ -198,7 +201,7 @@ $(document).ready(function() {
                 }
 
             },
-            "targets": 6
+            "targets": 7
         }, {// The `data` parameter refers to the data for the cell (defined by the
             // `data` option, which defaults to the column being worked with, in
             // this case `data: 0`.
@@ -213,7 +216,7 @@ $(document).ready(function() {
                 // }
 
             },
-            "targets": 7
+            "targets": 8
         }
 
         ]

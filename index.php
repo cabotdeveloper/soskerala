@@ -178,11 +178,12 @@
       <thead>
           <tr>
               <th>Location</th>
-              <th>No of persons</th>
+              <th>No of Persons</th>
               <th>Contact Name</th>
               <th>Contact Number</th>
               <th>Reported date</th>
               <th>Updated Date</th>
+              <th>Reported By</th>
               <th>Status</th>
                <th>Action</th>
           </tr>
@@ -190,11 +191,12 @@
       <tfoot>
           <tr>
               <th>Location</th>
-              <th>No of persons</th>
+              <th>No of Persons</th>
               <th>Contact Name</th>
               <th>Contact Number</th>
               <th>Reported date</th>
               <th>Updated Date</th>
+              <th>Reported By</th>
               <th>Status</th>
                <th>Action</th>
           </tr>
