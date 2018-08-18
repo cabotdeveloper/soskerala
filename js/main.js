@@ -87,7 +87,7 @@ function drawPins(data) {
         console.log(icon)
         return icon;
     }
-
+}
 
 function saveEntry(event) {
 
