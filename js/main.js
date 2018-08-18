@@ -58,8 +58,10 @@ function drawPins(data) {
             'Additional Notes: <b>' + data[i]['additional_notes'] + '</b><br /><br />' +
             'Change Status: <select id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
             '<option ' + ((data[i]['issue_status'] == "1") ? 'selected' : '') + ' value=1>Rescue In Progress</option>' +
-            '<option ' + ((data[i]['issue_status'] == "2") ? 'selected' : '') + ' value=2>Rescue completed</option></select>' +
-            '<input type="button" class="changeStatus" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' +
+            '<option ' + ((data[i]['issue_status'] == "2") ? 'selected' : '') + ' value=2>Rescue completed</option></select>' + '</b><br /><br />' +
+            '<input type="button" class="btn btn-info" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' + 
+            '<input type="button" class="btn btn-info" onclick=editClick(' + data[i]['issue_id'] + ') value="Edit">'+ 
+             '<input type="button" class="btn btn-danger" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
             '</div>' +
             '</div>';
 
@@ -86,7 +88,6 @@ function drawPins(data) {
         return icon;
     }
 
-}
 
 function saveEntry(event) {
 
@@ -117,6 +118,32 @@ function saveEntry(event) {
             alert("something went wrong. Please try again")
         });
 }
+function editEntry(event) {
+
+    event.preventDefault();
+    var location=$('#locationedit').val();
+    var noPersons=$('#no_personsedit').val();
+    var contactName=$('#contact_nameedit').val();
+    var contactMobile=$('#contact_mobileedit').val();
+    var notes = $('#notesedit').val();
+    var status = $('#mySatus').val();
+    var issueId = $('#issueId').val();
+    $.post("./ajax/edit_issue.php",'location='+location+'&noPersons='+noPersons+'&contactName='+contactName+'&contactMobile='+contactMobile+'&notes='+notes+'&status='+status+'&issueId='+issueId,function(result,status,xhr) {
+            if( status.toLowerCase()=="error".toLowerCase() )
+            { 
+                alert("An Error Occurred.."); 
+            }
+            else { 
+                
+                $("#entryForm")[0].reset();
+                alert(result);
+                window.location.reload();
+            }
+        })
+        .fail(function(){ alert("something went wrong. Please try again") });
+}
+
+
 
 $(document).ready(function() {
     
@@ -125,7 +152,7 @@ $(document).ready(function() {
         $("#lon").val('');
     })
 
-    $('#issue_table').DataTable({
+     var table =$('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php",
         "order": [
             [4, "desc"]
@@ -151,6 +178,9 @@ $(document).ready(function() {
             },
             {
                 "data": "issue_status"
+            },
+            { 
+                "defaultContent": "<button >Edit</button>"
             }
         ],
         "columnDefs": [{
@@ -169,10 +199,60 @@ $(document).ready(function() {
 
             },
             "targets": 6
-        }]
+        }, {// The `data` parameter refers to the data for the cell (defined by the
+            // `data` option, which defaults to the column being worked with, in
+            // this case `data: 0`.
+            "render": function(data, type, row) {
+                return "<button onclick=editClick('"+row.issue_id+"')>Edit</button>";
+                // if (row.issue_status == 2) {
+                //     return "Rescue Completed";
+                // } else if (row.issue_status == 1) {
+                //     return "Rescue In Progress";
+                // } else {
+                //     return "Yet to rescue";
+                // }
+
+            },
+            "targets": 7
+        }
+
+        ]
 
     });
+    
 });
+function editClick(id){
+ //$('#issue_table tbody').on( 'click', 'button', function () {
+       // var data = table.row( $(this).parents('tr') ).data();
+        //var id = data.issue_id;
+        $.post("./ajax/get_issue_details.php",'id='+id,function(result,status,xhr) {
+            if( status.toLowerCase()=="error".toLowerCase() )
+            { 
+                alert("An Error Occurred.."); 
+            }
+            else { 
+                //event.preventDefault();
+                $("#formEdit").modal('show');
+                var data =$.parseJSON(result);
+                $('#locationedit').val(data.location_address);
+                $('#no_personsedit').val(data.no_of_persons);
+                $('#contact_nameedit').val(data.contact_person_name);
+                $('#contact_mobileedit').val(data.contact_person_mobile);
+                $('#notesedit').val(data.additional_notes);
+                $('#statusedit').val(data.issue_status);
+                $('#issueId').val(data.issue_id);
+                $('#mySatus').val(data.issue_status); 
+                $('#issueIdDelete').val(data.issue_id);  
+
+            }
+        })
+        .fail(function(){ alert("something went wrong. Please try again") });
+
+
+   // } );
+
+}
+
 
 function changeStatus(issue_id) {
     var issue_status = $('#change_status_' + issue_id + ' option:selected').val();
@@ -195,6 +275,29 @@ function changeStatus(issue_id) {
     });
 }
 
+function deleteIssueId(){
+    deleteIssue($('#issueId').val());
+}
+///nimi///
+function deleteIssue(issue_id) {
+    var message = confirm('Are you sure you want to delete this record?');
+    if (message == true) {   
+         $.post("./ajax/delete_issue.php",'issue_id='+issue_id,function(result,status,xhr) {
+            if( status.toLowerCase()=="error".toLowerCase() )
+            { 
+                alert("An Error Occurred.."); 
+            }
+            else { 
+             window.location.reload();              
+            }
+        })
+        .fail(function(){ alert("something went wrong. Please try again") });
+    }else{
+       return;
+    }
+   
+}
+///
 function userChange(){
     var userType = $("#user_type option:selected").val();
     if(userType != 1){
