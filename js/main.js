@@ -187,7 +187,7 @@ function changeStatus(issue_id) {
 }
 
 function userChange(){
-    var userType = $("#user_type :selected").val();
+    var userType = $("#user_type option:selected").val();
     if(userType != 1){
       $("#login_div").show();
     }
@@ -196,7 +196,7 @@ function userChange(){
     }
 }
 function modalClose(){
-    var userType = $("#user_type :selected").val();
+    var userType = $("#user_type option:selected").val();
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
         $('#loginModal').modal('hide');
@@ -212,7 +212,10 @@ function modalClose(){
 }
 
 function login(){
+<<<<<<< HEAD
     
+=======
+>>>>>>> 74ed6db02a41570e7924df92697a8a83debf576b
     var userType = $("#user_type option:selected").val();    
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
@@ -238,7 +241,7 @@ function login(){
             { 
                 alert("An Error Occurred.."); 
             }
-            else { 
+            else {
                 if(result == 'Success'){
                     $("#loggedin_user").text(userName);
                     $("#login_div").hide();
