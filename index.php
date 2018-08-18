@@ -110,7 +110,7 @@
           <div class="modal-content">
           
             <div  class="modal-body" style="height:100%">
-                <form action="" id="entryForm" method="post">
+                <form action="" id="entryForm" method="post" onsubmit="event.preventDefault()">
                   <p class="heading">Location Address</p>
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"

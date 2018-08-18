@@ -25,14 +25,14 @@ function drawPins(data) {
 
     //var marker, i;
     var infoContent = []
-
+    var markerArray = []
     for (i = 0; i < data.length; i++) {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(data[i]['latitude'], data[i]['longitude']),
             map: map,
             icon: getIcon(data[i]['issue_status'])
         });
-
+        markerArray.push(marker);
         var statusText;
         if (data[i]['issue_status'] == 2) {
             statusText = "Rescue completed"
@@ -86,36 +86,6 @@ function drawPins(data) {
         return icon;
     }
 
-
-    function init_map(data) {
-        if (data['id'] == 1) {
-            var map_options = {
-                zoom: 14,
-                center: new google.maps.LatLng(data['latitude'], data['longitude'])
-            }
-            var map = new google.maps.Map(document.getElementById("map"), map_options);
-        }
-
-
-        var icon;
-        d
-        console.log(data);
-
-
-        var marker;
-        marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(data['latitude'], data['longitude']),
-            icon: icon
-        });
-        infowindow = new google.maps.InfoWindow({
-            content: data['location_address']
-        });
-        google.maps.event.addListener(marker, "click", function() {
-            infowindow.open(map, marker);
-        });
-        //infowindow.open(map, marker);
-    }
 }
 
 function saveEntry(event) {
@@ -201,7 +171,7 @@ $(document).ready(function() {
 function changeStatus(issue_id) {
     var issue_status = $('#change_status_' + issue_id + ' option:selected').val();
     $.ajax({
-        url: "./ajax/change_status.php&issue_id=" + issue_id + "&newStatus=" + issue_status + "",
+        url: "./ajax/change_status.php?issue_id=" + issue_id + "&newStatus=" + issue_status + "",
         async: true,
         dataType: 'json',
         success: function(data) {
@@ -240,8 +210,10 @@ function modalClose(){
         return;
     }
 }
+
 function login(){
-    var userType = $("#user_type :selected").val();    
+    
+    var userType = $("#user_type option:selected").val();    
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
         localStorage.setItem("user_type", userType);
