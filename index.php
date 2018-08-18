@@ -137,7 +137,44 @@
     </div>
     </div>
 
-   
+   <div>
+          <a data-toggle="modal" data-target="#form" class="float-button" style="cursor:pointer">+</a>
+        </div>
+        <div id="formEdit" class="modal fade">
+          <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <div  class="modal-body" style="height:100%">
+                <form action="" id="entryForm" method="post">
+                <p class="heading">Location</p>
+                    <input id="locationedit" type="text" value="" placeholder="Enter a location" name="location" required>                    
+                    <p class="heading">Number of persons</p>
+                    <input type="text" id="no_personsedit" name="no_persons">
+                    <p class="heading">Contact Person Name</p>
+                    <input type="text" id="contact_nameedit" name="contact_name">
+                    <p class="heading">Contact Number</p>
+                    <input type="text" id="contact_mobileedit" name="contact_mobile">
+                    <p class="heading">Notes</p>
+                    <textarea id = "notesedit" name="notes"></textarea>
+                    <p class="heading">Status</p>    
+                      <select id="mySatus" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" >
+                        <option value="0">To be rescued</option>
+                        <option value="1">Rescue In Progress</option>
+                        <option value="2">Rescue completed</option>                   
+                      </select> 
+                    <input type="hidden" id="issueId" name="issueId">
+                    <input type="button"  value="Cancel" class="btn-secondary" data-dismiss="modal">
+                    
+                    <input type="submit" onclick="editEntry(event)" value="Save" class="btn-primary">
+                    
+                </form>            
+            
+            
+            </div>
+        </div>
+    </div>
+    </div>
+
 
     
   
@@ -151,6 +188,7 @@
               <th>Reported date</th>
               <th>Updated Date</th>
               <th>Status</th>
+               <th>Action</th>
           </tr>
       </thead>
       <tfoot>
@@ -162,6 +200,7 @@
               <th>Reported date</th>
               <th>Updated Date</th>
               <th>Status</th>
+               <th>Action</th>
           </tr>
       </tfoot>
   </table>

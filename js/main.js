@@ -141,6 +141,31 @@ function saveEntry(event) {
             alert("something went wrong. Please try again")
         });
 }
+function editEntry(event) {
+
+    event.preventDefault();
+    var location=$('#locationedit').val();
+    var noPersons=$('#no_personsedit').val();
+    var contactName=$('#contact_nameedit').val();
+    var contactMobile=$('#contact_mobileedit').val();
+    var notes = $('#notesedit').val();
+    var status = $('#mySatus').val();
+    var issueId = $('#issueId').val();
+    $.post("./ajax/edit_issue.php",'location='+location+'&noPersons='+noPersons+'&contactName='+contactName+'&contactMobile='+contactMobile+'&notes='+notes+'&status='+status+'&issueId='+issueId,function(result,status,xhr) {
+            if( status.toLowerCase()=="error".toLowerCase() )
+            { 
+                alert("An Error Occurred.."); 
+            }
+            else { 
+                alert(result);
+                $("#entryForm")[0].reset();
+                window.location.reload();
+            }
+        })
+        .fail(function(){ alert("something went wrong. Please try again") });
+}
+
+
 
 $(document).ready(function() {
     
@@ -149,7 +174,7 @@ $(document).ready(function() {
         $("#lon").val('');
     })
 
-    $('#issue_table').DataTable({
+     var table =$('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php",
         "order": [
             [4, "desc"]
@@ -175,6 +200,9 @@ $(document).ready(function() {
             },
             {
                 "data": "issue_status"
+            },
+            { 
+                "defaultContent": "<button>Edit</button>"
             }
         ],
         "columnDefs": [{
@@ -196,6 +224,33 @@ $(document).ready(function() {
         }]
 
     });
+     $('#issue_table tbody').on( 'click', 'button', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        var id = data.issue_id;
+        $.post("./ajax/get_issue_details.php",'id='+id,function(result,status,xhr) {
+            if( status.toLowerCase()=="error".toLowerCase() )
+            { 
+                alert("An Error Occurred.."); 
+            }
+            else { 
+                //event.preventDefault();
+                $("#formEdit").modal('show');
+                var data =$.parseJSON(result);
+                $('#locationedit').val(data.location_address);
+                $('#no_personsedit').val(data.no_of_persons);
+                $('#contact_nameedit').val(data.contact_person_name);
+                $('#contact_mobileedit').val(data.contact_person_mobile);
+                $('#notesedit').val(data.additional_notes);
+                $('#statusedit').val(data.issue_status);
+                $('#issueId').val(data.issue_id);
+                $('#mySatus').val(data.issue_status);   
+
+            }
+        })
+        .fail(function(){ alert("something went wrong. Please try again") });
+
+
+    } );
 });
 
 function changeStatus(issue_id) {
