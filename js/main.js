@@ -291,15 +291,15 @@ function changeStatus(issue_id) {
     });
 }
 
-function deleteIssueId(){
-    if(localStorage.getItem("user_type") == 1){
-        alert("You are not authorized to do delete");
-        return;
-    }    
+function deleteIssueId(){        
     deleteIssue($('#issueId').val());
 }
 ///nimi///
 function deleteIssue(issue_id) {
+    if(localStorage.getItem("user_type") == 1){
+        alert("You are not authorized to do delete");
+        return;
+    }
     var message = confirm('Are you sure you want to delete this record?');
     if (message == true) {   
          $.post("./ajax/delete_issue.php",'issue_id='+issue_id,function(result,status,xhr) {
