@@ -191,7 +191,8 @@ function changeStatus(issue_id) {
         else{
             alert("You are unauthorized to do this operation");
         }
-    });    
+    }
+    });
 }
 
 function userChange(){
