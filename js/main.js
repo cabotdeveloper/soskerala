@@ -197,7 +197,7 @@ $(document).ready(function() {
                 } else if (row.issue_status == 1) {
                     return "Rescue In Progress";
                 } else {
-                    return "Yet to rescue";
+                    return "To be rescued";
                 }
 
             },
