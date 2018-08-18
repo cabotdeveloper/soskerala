@@ -92,6 +92,12 @@ function saveEntry(event) {
 
     event.preventDefault();
     var location = $('#user_input_autocomplete_address').val();
+    
+    if (location === '') {
+        alert("Please enter location address before you submit.");
+        return;
+    }
+
     var noPersons = $('#no_persons').val();
     var contactName = $('#contact_name').val();
     var contactMobile = $('#contact_mobile').val();
