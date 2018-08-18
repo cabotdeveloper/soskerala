@@ -116,22 +116,22 @@ input[type=password] {
 }
 
 input[type=submit] {
-    width: 30%;
+    width: 25%;
     /* float:right !important; */
     background-color: #14bdef;
     color: white;
     padding: 14px 20px;
-    margin: 2% 0 0 10%;
+    margin: 2% 0 0 5%;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 input[type=button] {
-    width: 30%;
+    width: 25%;
     /* float:left; */
     padding: 14px 20px;
-    margin: 2% 0 0 15%;
+    margin: 2% 0 0 5%;
     border-radius: 4px;
     border:none;
     cursor: pointer;
