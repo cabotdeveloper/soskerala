@@ -90,7 +90,7 @@
     <div id="map" style="height:50%; vertical-align:bottom"></div>
     <div id="logged_dt">
       Logged in as : <span id="loggedin_user"></span> 
-      <button id="change_btn" class="btn btn-secondary" onclick="changeUser()">Change user role</button>
+      &nbsp;&nbsp;<a id="change_btn" onclick="changeUser()">Change user role</a>
       
     </div>
     <div id="infowindow-content">
@@ -121,10 +121,10 @@
                     <input type="text" id="contact_mobile" name="contact_mobile">
                     <p class="heading">Notes</p>
                     <textarea id = "notes" name="notes"></textarea>
-                    <input type="button"  value="Cancel" class="btn-secondary" data-dismiss="modal">
+                    <input type="button"  value="Cancel" class="btn-secondary add_btns" data-dismiss="modal">
                     <input type="hidden" id="lat" name="lat">
                     <input type="hidden" id="lon" name="lon">
-                    <input type="submit" onclick="saveEntry(event)" value="Submit" class="btn-primary">
+                    <input type="submit" onclick="saveEntry(event)" value="Submit" class="btn-primary add_btns">
                     
                 </form>            
             
@@ -161,9 +161,8 @@
                       </select> 
                     <input type="hidden" id="issueId" name="issueId">
                     <input type="button"  value="Cancel" class="btn-secondary" data-dismiss="modal">
-                    
+                    <input type="button" id="delete_btn" class="btn btn-danger" onclick="deleteIssueId()" value="Delete">
                     <input type="submit" onclick="editEntry(event)" value="Save" class="btn-primary">
-                    <input type="button" class="btn btn-danger" onclick="deleteIssueId()" value="Delete">
                 </form>            
             
             

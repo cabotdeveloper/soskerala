@@ -116,7 +116,7 @@ input[type=password] {
 }
 
 input[type=submit] {
-    width: 25%;
+    width: 30%;
     /* float:right !important; */
     background-color: #14bdef;
     color: white;
@@ -181,5 +181,16 @@ input[type=submit]:hover {
     margin-top: 5px !important;
 }
 #logged_dt{
-    margin-left: 20px !important;
+    margin: 20px 0 0 20px !important;
+}
+#delete_btn{
+    margin-bottom: 14px;
+}
+.pin_popup_btn{
+    padding: 5px 0 5px !important;
+    margin-left: 8% !important;
+}
+.add_btns{
+    width: 30% !important; 
+    margin: 2% 0 0 13% !important;   
 }

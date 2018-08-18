@@ -47,21 +47,21 @@ function drawPins(data) {
 
         infoContent[i] = '<div id="content">' +
             '<div id="siteNotice">' +
-            'Rescue Status:<h2>' + statusText + '</h2>' +
+            'Rescue Status:<h5>' + statusText + '</h5>' +
             '</div>' +
             '<div id="bodyContent">' +
-            'Location: <b>' + data[i]['location_address'] + '</b><br />' +
-            'Contact Person Name: <b>' + data[i]['contact_person_name'] + '</b><br />' +
-            'Contact Person Phone: <b>' + data[i]['contact_person_mobile'] + '</b><br />' +
-            'Issue reported on: <b>' + data[i]['reported_date'] + '</b><br />' +
+            'Location: <b>' + data[i]['location_address'] + '</b><br /><br />' +
+            'Contact Person Name: <b>' + data[i]['contact_person_name'] + '</b><br /><br />' +
+            'Contact Person Phone: <b>' + data[i]['contact_person_mobile'] + '</b><br /><br />' +
+            'Issue reported on: <b>' + data[i]['reported_date'] + '</b><br /><br />' +
             'Issue last updated on: <b>' + data[i]['updated_date'] + '</b><br /><br />' +
             'Additional Notes: <b>' + data[i]['additional_notes'] + '</b><br /><br />' +
             'Change Status: <select id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
             '<option ' + ((data[i]['issue_status'] == "1") ? 'selected' : '') + ' value=1>Rescue In Progress</option>' +
             '<option ' + ((data[i]['issue_status'] == "2") ? 'selected' : '') + ' value=2>Rescue completed</option></select>' + '</b><br /><br />' +
-            '<input type="button" class="btn btn-info" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' + 
-            '<input type="button" class="btn btn-info" onclick=editClick(' + data[i]['issue_id'] + ') value="Edit">'+ 
-             '<input type="button" class="btn btn-danger" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
+            '<input type="button" class="btn btn-info pin_popup_btn" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' + 
+            '<input type="button" class="btn btn-info pin_popup_btn" onclick=editClick(' + data[i]['issue_id'] + ') value="Edit">'+ 
+             '<input type="button" class="btn btn-danger pin_popup_btn" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
             '</div>' +
             '</div>';
 
@@ -180,7 +180,7 @@ $(document).ready(function() {
                 "data": "issue_status"
             },
             { 
-                "defaultContent": "<button >Edit</button>"
+                "defaultContent": '<button>Edit</button>'
             }
         ],
         "columnDefs": [{
