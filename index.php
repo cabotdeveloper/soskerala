@@ -10,6 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
+      $(window).on('load',function(){
+        $('#loginModal').modal({backdrop: 'static', keyboard: false});
+        $('#loginModal').modal('show');
+      });
       function getData() {
         $.ajax({
           url: "./ajax/get_all_issues.php",
@@ -59,8 +63,38 @@
     </style>
   </head>
   <body>
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">    
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" onclick="modalClose()">&times;</button>
+            <h4 class="modal-title">Login</h4>
+          </div>
+          <div class="modal-body">
+            <label for="user_type">Select user type :</label>
+            <select class="form-control" id="user_type" onchange="userChange()">
+              <option value=1 selected>Victim/Guest</option>
+              <option value=2>Rescuer</option>
+              <option value=3>Moderator</option>            
+            </select><br>
+            <div id="login_div" style="display:none;">
+              User Name :<input type="text" id="user_name"> 
+              Password :<input type="password" id="password"> 
+            </div>  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+            <button type="button" class="btn btn-secondary" onclick="modalClose()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="map" style="height:50%; vertical-align:bottom"></div>
-
+    <div>
+      Logged in as : <span id="loggedin_user"></span> 
+      <button id="change_btn" onclick="changeUser()">Change</button>
+      
+    </div>
     <div id="infowindow-content">
           <img src="" width="16" height="16" id="place-icon">
           <span id="place-name" class="title"></span>
