@@ -180,3 +180,6 @@ input[type=submit]:hover {
 #change_btn{
     margin-top: 5px !important;
 }
+#logged_dt{
+    margin-left: 20px !important;
+}
