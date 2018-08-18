@@ -19,7 +19,7 @@
         $result = $db->querySingle($sql,true);
         if(count($result)){
             session_start();
-            //$_SESSION['user_id'] = $result['id'];
+            $_SESSION['user_name'] = $result['user_name'];
             $_SESSION['user_type'] = $result['user_type'];
             echo "Success";
             exit;
