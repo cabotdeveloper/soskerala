@@ -55,6 +55,7 @@ function drawPins(data) {
             'Contact Person Phone: <b>' + data[i]['contact_person_mobile'] + '</b><br /><br />' +
             'Issue reported on: <b>' + data[i]['reported_date'] + '</b><br /><br />' +
             'Issue last updated on: <b>' + data[i]['updated_date'] + '</b><br /><br />' +
+            'Reported by: <b>' + data[i]['reported_by'] + '</b><br /><br />' +
             'Additional Notes: <b>' + data[i]['additional_notes'] + '</b><br /><br />' +
             'Change Status: <select id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
             '<option ' + ((data[i]['issue_status'] == "1") ? 'selected' : '') + ' value=1>Rescue In Progress</option>' +
