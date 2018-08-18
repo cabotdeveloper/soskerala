@@ -182,7 +182,7 @@ function changeStatus(issue_id) {
 }
 
 function userChange(){
-    var userType = $("#user_type :selected").val();
+    var userType = $("#user_type option:selected").val();
     if(userType != 1){
       $("#login_div").show();
     }
@@ -191,7 +191,7 @@ function userChange(){
     }
 }
 function modalClose(){
-    var userType = $("#user_type :selected").val();
+    var userType = $("#user_type option:selected").val();
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
         $('#loginModal').modal('hide');
@@ -206,7 +206,7 @@ function modalClose(){
     }
 }
 function login(){
-    var userType = $("#user_type :selected").val();    
+    var userType = $("#user_type option:selected").val();    
     if(userType == 1){
         $("#loggedin_user").text('Victim/Guest');
         localStorage.setItem("user_type", userType);
