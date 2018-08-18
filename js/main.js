@@ -59,9 +59,9 @@ function drawPins(data) {
             'Change Status: <select id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
             '<option ' + ((data[i]['issue_status'] == "1") ? 'selected' : '') + ' value=1>Rescue In Progress</option>' +
             '<option ' + ((data[i]['issue_status'] == "2") ? 'selected' : '') + ' value=2>Rescue completed</option></select>' + '</b><br /><br />' +
-            '<input type="button" class="btn btn-info pin_popup_btn" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' + 
+            '<input type="button" class="btn btn-danger pin_popup_btn" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
             '<input type="button" class="btn btn-info pin_popup_btn" onclick=editClick(' + data[i]['issue_id'] + ') value="Edit">'+ 
-             '<input type="button" class="btn btn-danger pin_popup_btn" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
+            '<input type="button" class="btn btn-info pin_popup_btn" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' + 
             '</div>' +
             '</div>';
 
@@ -251,6 +251,9 @@ function editClick(id){
                 $('#statusedit').val(data.issue_status);
                 $('#issueId').val(data.issue_id);
                 $('#mySatus').val(data.issue_status); 
+                if(localStorage.getItem("user_type") == 1){
+                    $('#mySatus').attr("disabled","disabled"); 
+                }
                 $('#issueIdDelete').val(data.issue_id);  
 
             }
@@ -285,6 +288,10 @@ function changeStatus(issue_id) {
 }
 
 function deleteIssueId(){
+    if(localStorage.getItem("user_type") == 1){
+        alert("You are not authorized to do delete");
+        return;
+    }    
     deleteIssue($('#issueId').val());
 }
 ///nimi///
@@ -386,4 +393,7 @@ function login(){
 function changeUser(){
     $('#loginModal').modal('show');
 
+}
+function reportIssue(){
+    $("#add_button").click();
 }

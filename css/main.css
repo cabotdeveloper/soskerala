@@ -194,3 +194,10 @@ input[type=submit]:hover {
     width: 30% !important; 
     margin: 2% 0 0 13% !important;   
 }
+#change_btn:hover{
+    cursor: pointer !important;
+}
+.rpt-issue-btn{
+    float: right;
+    margin: 0 2% 0 0 !important;   
+}

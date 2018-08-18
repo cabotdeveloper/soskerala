@@ -91,7 +91,7 @@
     <div id="logged_dt">
       Logged in as : <span id="loggedin_user"></span> 
       &nbsp;&nbsp;<a id="change_btn" onclick="changeUser()">Change user role</a>
-      
+      <button class="btn btn-primary rpt-issue-btn" onclick="reportIssue()">Report Issue</button> 
     </div>
     <div id="infowindow-content">
           <img src="" width="16" height="16" id="place-icon">
@@ -144,7 +144,7 @@
             <div  class="modal-body" style="height:100%">
                 <form action="" id="entryForm" method="post">
                 <p class="heading">Location</p>
-                    <input id="locationedit" type="text" value="" placeholder="Enter a location" name="location" required>                    
+                    <input id="locationedit" type="text" value="" disabled placeholder="Enter a location" name="location" required>                    
                     <p class="heading">Number of persons</p>
                     <input type="text" id="no_personsedit" name="no_persons">
                     <p class="heading">Contact Person Name</p>
