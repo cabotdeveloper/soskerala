@@ -23,7 +23,25 @@ function getLocationFromLatLng(lat, lng) {
         }
     });
 }
-
+// function getLatLngFromLocation(){
+//     var location = $("#user_input_autocomplete_address").val();
+//     geocoder.geocode({
+//         'address': location
+//     }, function(results, status) {
+//         if (status === 'OK') {
+//             if (results[0]) {
+//                 lat = results[0].geometry.location.lat;
+//                 long = results[0].geometry.location.lng;
+//                 $("#lat").val(lat);
+//                 $("#lon").val(long);                
+//             } else {
+//                 window.alert('No results found');
+//             }
+//         } else {
+//             window.alert('Geocoder failed to get Location. Please try entering the location again. \nSytem message: ' + status);
+//         }
+//     });
+// }
 function drawPins(data) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
@@ -124,7 +142,6 @@ function saveEntry(event) {
         alert("Please enter location address before you submit.");
         return;
     }
-
     var noPersons = $('#no_persons').val();
     var contactName = $('#contact_name').val();
     var contactMobile = $('#contact_mobile').val();    
@@ -159,7 +176,7 @@ function editEntry(event) {
             }
             else { 
                 
-                $("#entryForm")[0].reset();
+                $("#editForm")[0].reset();
                 alert(result);
                 window.location.reload();
             }
@@ -167,16 +184,9 @@ function editEntry(event) {
         .fail(function(){ alert("something went wrong. Please try again") });
 }
 
-
-
 $(document).ready(function() {
     
-    $("#user_input_autocomplete_address").change(function(){
-        $("#lat").val('');
-        $("#lon").val('');
-    })
-
-     var issue_table =$('#issue_table').DataTable({
+    var issue_table =$('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php",
         "order": [
             [4, "desc"]

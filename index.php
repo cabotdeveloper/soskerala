@@ -33,7 +33,27 @@
         }); 
         //Location autocomplete
         var input = document.getElementById('user_input_autocomplete_address');                 
-        new google.maps.places.Autocomplete(input); 
+        var autocomplete = new google.maps.places.Autocomplete(input); 
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+          var location = $("#user_input_autocomplete_address").val();
+          geocoder.geocode({
+              'address': location
+          }, function(results, status) {
+              if (status === 'OK') {
+                  if (results[0]) {
+                      lat = results[0].geometry.location.lat;
+                      long = results[0].geometry.location.lng;
+                      $("#lat").val(lat);
+                      $("#lon").val(long);                
+                  } else {
+                      window.alert('No results found');
+                  }
+              } else {
+                  window.alert('Geocoder failed to get Location. Please try entering the location again. \nSytem message: ' + status);
+              }
+          });
+        });
 
         //Open pop-up on map click
         
@@ -117,8 +137,8 @@
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
                              placeholder="Start typing your address...">
-                    <input type="number" step="any" id="lat" name="lat" disabled placeholder="Enter latitude..." onblur="getLocation()">
-                    <input type="number" class="long" step="any" id="lon" name="lon" disabled placeholder="Enter longitude..." onblur="getLocation()">
+                    <input type="number" step="any" id="lat" name="lat" disabled placeholder="Enter latitude..." onblur="getLocationFromLatLng()">
+                    <input type="number" class="long" step="any" id="lon" name="lon" disabled placeholder="Enter longitude..." onblur="getLocationFromLatLng()">
                     <p class="heading">Number of persons</p>
                     <input type="text" id="no_persons" name="no_persons">
                     <p class="heading">Contact Person Name</p>
@@ -146,7 +166,7 @@
           <div class="modal-content">
           
             <div  class="modal-body" style="height:100%">
-                <form action="" id="entryForm" method="post">                 
+                <form action="" id="editForm" method="post">                 
                 <p class="heading">Location</p>
                     <input id="locationedit" type="text" value="" disabled placeholder="Enter a location" name="location" required>                    
                     <span style="width:49%;float:left;">
