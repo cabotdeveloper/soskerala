@@ -1,5 +1,10 @@
 var map;
 var geocoder;
+var infowindow;
+
+function closeWindow() {
+    infowindow.close();
+}
 
 function getLocationFromLatLng() {
     var lat = $("#lat").val();
@@ -88,7 +93,7 @@ function drawPins(data) {
         }
         console.log(data[i]['issue_status']);
 
-        var infowindow = new google.maps.InfoWindow();
+        infowindow = new google.maps.InfoWindow();
 
         infoContent[i] = '<div id="content">' +
             '<div id="siteNotice">' +
@@ -108,6 +113,7 @@ function drawPins(data) {
             '<input type="button" class="btn btn-danger pin_popup_btn" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
             '<input type="button" class="btn btn-info pin_popup_btn" onclick=editClick(' + data[i]['issue_id'] + ') value="Edit">'+ 
             '<input type="button" class="btn btn-info pin_popup_btn" onclick=changeStatus(' + data[i]['issue_id'] + ') value="Submit">' + 
+            '<div onclick="closeWindow()" style="float:right; padding-top:8px; cursor:pointer; font-weight:bold">Close [x]</div>' +
             '</div>' +
             '</div>';
 
