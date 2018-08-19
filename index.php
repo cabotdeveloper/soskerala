@@ -57,7 +57,25 @@
 
         //Open pop-up on map click
         
-
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var location = $("#user_input_autocomplete_address").val();
+            geocoder.geocode({
+                'address': location
+            }, function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        lat = results[0].geometry.location.lat;
+                        long = results[0].geometry.location.lng;
+                        $("#lat").val(lat);
+                        $("#lon").val(long);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed to get Location. Please try entering the location again. \nSytem message: ' + status);
+                }
+            });
+        });
       }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5c7RVG5abNguKbkJbKobTKhOu_pEtk4s&callback=getData&libraries=places" async defer></script>
