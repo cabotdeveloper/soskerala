@@ -1,7 +1,9 @@
 var map;
 var geocoder;
 
-function getLocationFromLatLng(lat, lng) {
+function getLocationFromLatLng() {
+    var lat = $("#lat").val();
+    var lng = $("#lon").val();
     var location_address;
     var latlng = {
         lat: parseFloat(lat),
@@ -14,12 +16,12 @@ function getLocationFromLatLng(lat, lng) {
         if (status === 'OK') {
             if (results[0]) {
                 location_address = results[0].formatted_address;
-                alert(location_address)
+                $("#user_input_autocomplete_address").val(location_address);
             } else {
                 window.alert('No results found');
             }
         } else {
-            window.alert('Geocoder failed to get Location. Please try entering the latitude & longitude again. \nSytem message: ' + status);
+            //window.alert('Geocoder failed to get Location. Please try entering the latitude & longitude again. \nSytem message: ' + status);
         }
     });
 }
@@ -138,19 +140,27 @@ function saveEntry(event) {
     var location = $('#user_input_autocomplete_address').val();
     var latitude = $("#lat").val();
     var longitude = $("#lon").val();
-    if (!(location === '' || (latitude == '' && longitude ==''))) {
-        alert("Please enter location address before you submit.");
-        return;
-    }
+    
+    if (location == ''){
+        if(latitude == '' || longitude =='') {
+            alert("Please enter location address before you submit.");
+            return;
+        }
+    } 
+    $("#save_modal_btn_id").prop('disabled', true);
     var noPersons = $('#no_persons').val();
     var contactName = $('#contact_name').val();
     var contactMobile = $('#contact_mobile').val();    
     var notes = $('#notes').val();
+
     $.post("./ajax/add_issue.php", 'location=' + location + '&noPersons=' + noPersons + '&contactName=' + contactName + '&contactMobile=' + contactMobile + '&notes=' + notes + '&latitude='+latitude+ '&longitude='+ longitude, function(result, status, xhr) {
+           
             if (status.toLowerCase() == "error".toLowerCase()) {
                 alert("An Error Occurred..");
             } else {
+                //$("#wait").css("display", "none");
                 alert(result);
+                $("#save_modal_btn_id").prop('disabled', false);
                 $("#entryForm")[0].reset();
                 window.location.reload();
             }
@@ -275,16 +285,16 @@ $(document).ready(function() {
             return;
         }
     });
-    $("#radio_location").click(function(){
-        $("#lat").attr("disabled","disabled");
-        $("#lon").attr("disabled","disabled");
-        $("#user_input_autocomplete_address").removeAttr("disabled");        
-    });
-    $("#radio_latlong").click(function(){
-        $("#user_input_autocomplete_address").attr("disabled","disabled");        
-        $("#lat").removeAttr("disabled");
-        $("#lon").removeAttr("disabled");
-    });
+    // $("#radio_location").click(function(){
+    //     $("#lat").attr("disabled","disabled");
+    //     $("#lon").attr("disabled","disabled");
+    //     $("#user_input_autocomplete_address").removeAttr("disabled");        
+    // });
+    // $("#radio_latlong").click(function(){
+    //     $("#user_input_autocomplete_address").attr("disabled","disabled");        
+    //     $("#lat").removeAttr("disabled");
+    //     $("#lon").removeAttr("disabled");
+    // });
 });
 function editClick(id){
  //$('#issue_table tbody').on( 'click', 'button', function () {

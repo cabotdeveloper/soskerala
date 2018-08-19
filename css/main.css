@@ -207,9 +207,15 @@ input[type=submit]:hover {
     float: right;
     margin: 0 2% 0 0 !important;   
 }
+
 .long{
     margin-left: 3% !important;
 }
 #latitude,#longitude{
     width: 100%;
 }
+
+.tooltip_img{
+     width:20px;
+}
+
