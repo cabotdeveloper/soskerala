@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == 'localhost') {
         ini_set('display_errors', 'On');
         error_reporting(E_ALL);
@@ -18,7 +19,6 @@
         $sql ="SELECT * FROM users where user_name='".$user_name."' and password='".$password."' and user_type='".$user_type."'";
         $result = $db->querySingle($sql,true);
         if(count($result)){
-            session_start();
             $_SESSION['user_name'] = $result['user_name'];
             $_SESSION['user_type'] = $result['user_type'];
             echo "Success";

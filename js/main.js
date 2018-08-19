@@ -101,6 +101,8 @@ function drawPins(data) {
             '</div>' +
             '<div id="bodyContent">' +
             'Location: <b>' + data[i]['location_address'] + '</b><br /><br />' +
+            'Latitude: <b>' + data[i]['latitude'] + '</b><br /><br />' +
+            'Longitude: <b>' + data[i]['longitude'] + '</b><br /><br />' +
             'Contact Person Name: <b>' + data[i]['contact_person_name'] + '</b><br /><br />' +
             'Contact Person Phone: <b>' + data[i]['contact_person_mobile'] + '</b><br /><br />' +
             'Issue reported on: <b>' + data[i]['reported_date'] + '</b><br /><br />' +
@@ -207,11 +209,17 @@ $(document).ready(function() {
     var issue_table =$('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php?user="+user,
         "order": [
-            [4, "desc"]
+            [6, "desc"]
         ],
         "columns": [{
                 "data": "location_address",
                 "width": "100px"
+            },
+            {
+                "data": "latitude"
+            },
+            {
+                "data": "longitude"
             },
             {
                 "data": "no_of_persons"
@@ -253,7 +261,7 @@ $(document).ready(function() {
                 }
 
             },
-            "targets": 7
+            "targets": 9
         }, {// The `data` parameter refers to the data for the cell (defined by the
             // `data` option, which defaults to the column being worked with, in
             // this case `data: 0`.
@@ -268,7 +276,7 @@ $(document).ready(function() {
                 // }
 
             },
-            "targets": 8
+            "targets": 10
         }
 
         ]
@@ -279,7 +287,7 @@ $(document).ready(function() {
         if ( data['latitude'] != '' && data['longitude'] != '') {
             var myLatlng = new google.maps.LatLng(data['latitude'], data['longitude']);
             $('html, body').scrollTop(0);
-            map.setZoom(10); 
+            map.setZoom(20); 
             map.panTo(myLatlng);
         } else {
             alert("There is no marker pin for this location, because Google API did not provide latitude or longitude for this location");
@@ -288,7 +296,7 @@ $(document).ready(function() {
     } );
 
     $('#issue_table tbody').on('click', 'td', function (event) {
-        if ($(this).index() == 8 ) { //Edit button at this index
+        if ($(this).index() == 10 ) { //Edit button at this index
             event.stopPropagation();
             return;
         }
@@ -375,12 +383,10 @@ function deleteIssue(issue_id) {
     var message = confirm('Are you sure you want to delete this record?');
     if (message == true) {   
          $.post("./ajax/delete_issue.php",'issue_id='+issue_id,function(result,status,xhr) {
-            if( status.toLowerCase()=="error".toLowerCase() )
-            { 
-                alert("An Error Occurred.."); 
-            }
-            else { 
-             window.location.reload();              
+            if (result == 1) { 
+                window.location.reload();              
+            } else {
+                alert("You don't have enough permission to do this operation");
             }
         })
         .fail(function(){ alert("something went wrong. Please try again") });

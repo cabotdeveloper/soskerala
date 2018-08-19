@@ -13,6 +13,7 @@ if($_POST ){
     $db = new SQLite3('../db/rescueDb.db');
    // $cordinates = get_geocode($data['location']);
    // $location = ($cordinates['formatted_address'])?$cordinates['formatted_address']:$data['location'];
+    date_default_timezone_set('Asia/Kolkata');
     $rptTime = date('d-M-Y H:i:s', time());
     $db->query("BEGIN TRANSACTION");
     if(isset($_SESSION["user_type"]) && ($_SESSION["user_type"] == 2 || $_SESSION["user_type"] == 3)) {

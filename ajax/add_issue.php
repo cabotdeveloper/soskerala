@@ -16,6 +16,7 @@ if($_POST ){
     $location = $data['location'];
     $latitude = (trim($data['latitude']) != '')? $data['latitude'] : $cordinates['latitude'];
     $longitude = (trim($data['longitude']) != '')? $data['longitude'] : $cordinates['longitude'];
+    date_default_timezone_set('Asia/Kolkata');
     $rptTime = date('d-M-Y H:i:s', time());
     $reported_by = "Victim / Guest";
     if (isset($_SESSION['user_name'])) {

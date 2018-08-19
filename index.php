@@ -244,6 +244,8 @@
       <thead>
           <tr>
               <th>Location</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
               <th>No of Persons</th>
               <th>Contact Name</th>
               <th>Contact Number</th>
@@ -257,6 +259,8 @@
       <tfoot>
           <tr>
               <th>Location</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
               <th>No of Persons</th>
               <th>Contact Name</th>
               <th>Contact Number</th>
@@ -270,7 +274,7 @@
   </table>
 
 
-  <script src="./js/main.js?2018"></script>
+  <script src="./js/main.js?2026"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
