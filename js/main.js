@@ -99,18 +99,22 @@ function saveEntry(event) {
         alert("Please enter location address before you submit.");
         return;
     }
-
+    $("#save_modal_btn_id").prop('disabled', true);
     var noPersons = $('#no_persons').val();
     var contactName = $('#contact_name').val();
     var contactMobile = $('#contact_mobile').val();
     var latitude = $("#lat").val();
     var longitude = $("#lon").val();
     var notes = $('#notes').val();
+
     $.post("./ajax/add_issue.php", 'location=' + location + '&noPersons=' + noPersons + '&contactName=' + contactName + '&contactMobile=' + contactMobile + '&notes=' + notes + '&latitude='+latitude+ '&longitude='+ longitude, function(result, status, xhr) {
+           
             if (status.toLowerCase() == "error".toLowerCase()) {
                 alert("An Error Occurred..");
             } else {
+                //$("#wait").css("display", "none");
                 alert(result);
+                $("#save_modal_btn_id").prop('disabled', false);
                 $("#entryForm")[0].reset();
                 window.location.reload();
             }
