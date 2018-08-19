@@ -445,6 +445,3 @@ function changeUser(){
 function reportIssue(){
     $("#add_button").click();
 }
-function getLocation(){
-
-}
