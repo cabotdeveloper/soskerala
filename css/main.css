@@ -137,7 +137,7 @@ input[type=button] {
     width: 25%;
     /* float:left; */
     padding: 14px 20px;
-    margin: 2% 0 0 5%;
+    margin: 0 0 0 5%;
     border-radius: 4px;
     border:none;
     cursor: pointer;
@@ -189,9 +189,9 @@ input[type=submit]:hover {
 #logged_dt{
     margin: 20px 0 0 20px !important;
 }
-#delete_btn{
+/* #delete_btn{
     margin-bottom: 14px;
-}
+} */
 .pin_popup_btn{
     padding: 5px 0 5px !important;
     margin-left: 8% !important;
