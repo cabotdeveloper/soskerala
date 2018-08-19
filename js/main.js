@@ -1,4 +1,28 @@
 var map;
+var geocoder;
+
+function getLocationFromLatLng(lat, lng) {
+    var location_address;
+    var latlng = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng)
+    }; 
+
+    geocoder.geocode({
+        'location': latlng
+    }, function(results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                location_address = results[0].formatted_address;
+                alert(location_address)
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed to get Location. Please try entering the latitude & longitude again. \nSytem message: ' + status);
+        }
+    });
+}
 
 function drawPins(data) {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -6,7 +30,7 @@ function drawPins(data) {
         center: new google.maps.LatLng(10.1059814, 76.3192878)
     });
 
-    var geocoder = new google.maps.Geocoder();
+    geocoder = new google.maps.Geocoder();
     google.maps.event.addListener(map, "click", function(event) {
         geocoder.geocode({
             'latLng': event.latLng
