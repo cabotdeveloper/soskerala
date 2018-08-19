@@ -86,8 +86,8 @@ margin-left:10px;
 
 textarea {
     width: 100%;
-    height: 150px;
-    padding: 12px 20px;
+    height: 100px;
+    padding: 8px 10px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -97,13 +97,19 @@ textarea {
 
 input[type=text] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 8px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+input[type=number] {
+    width: 48%;
+    padding: 8px 10px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 input[type=password] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 6px 10px;
     margin: 8px 0;
     box-sizing: border-box;
 }
@@ -200,4 +206,10 @@ input[type=submit]:hover {
 .rpt-issue-btn{
     float: right;
     margin: 0 2% 0 0 !important;   
+}
+.long{
+    margin-left: 3% !important;
+}
+#latitude,#longitude{
+    width: 100%;
 }

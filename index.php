@@ -108,11 +108,17 @@
           
             <div  class="modal-body" style="height:100%">
                 <form action="" id="entryForm" method="post" onsubmit="event.preventDefault()">
+                <div class="radio">
+                  <label><input type="radio" id="radio_location" name="location" value="location" checked><b>Enter Location</b></label>
+                  <label><input type="radio" id="radio_latlong" name="location" value="latandlong"><b>Enter Lattitude & Longitude</b></label>
+                </div>  
+                
                   <p class="heading">Location Address</p>
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
                              placeholder="Start typing your address...">
-                  
+                    <input type="number" step="any" id="lat" name="lat" disabled placeholder="Enter latitude..." onblur="getLocation()">
+                    <input type="number" class="long" step="any" id="lon" name="lon" disabled placeholder="Enter longitude..." onblur="getLocation()">
                     <p class="heading">Number of persons</p>
                     <input type="text" id="no_persons" name="no_persons">
                     <p class="heading">Contact Person Name</p>
@@ -122,8 +128,6 @@
                     <p class="heading">Notes</p>
                     <textarea id = "notes" name="notes"></textarea>
                     <input type="button"  value="Cancel" class="btn-secondary add_btns" data-dismiss="modal">
-                    <input type="hidden" id="lat" name="lat">
-                    <input type="hidden" id="lon" name="lon">
                     <input type="submit" onclick="saveEntry(event)" value="Submit" class="btn-primary add_btns">
                     
                 </form>            
@@ -142,9 +146,17 @@
           <div class="modal-content">
           
             <div  class="modal-body" style="height:100%">
-                <form action="" id="entryForm" method="post">
+                <form action="" id="entryForm" method="post">                 
                 <p class="heading">Location</p>
                     <input id="locationedit" type="text" value="" disabled placeholder="Enter a location" name="location" required>                    
+                    <span style="width:49%;float:left;">
+                      Latitude :<br>
+                      <input type="number" step="any" id="latitude" name="latitude" disabled placeholder="Enter latitude..." onblur="getLocationFromLatLng()">
+                    </span>
+                    <span style="width:49%;float:right;">
+                      Longitude :<br>
+                      <input type="number" step="any" id="longitude" name="longitude" disabled placeholder="Enter longitude..." onblur="getLocationFromLatLng()">
+                    </span>
                     <p class="heading">Number of persons</p>
                     <input type="text" id="no_personsedit" name="no_persons">
                     <p class="heading">Contact Person Name</p>
