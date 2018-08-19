@@ -16,12 +16,12 @@ function getLocationFromLatLng() {
         if (status === 'OK') {
             if (results[0]) {
                 location_address = results[0].formatted_address;
-               // alert(location_address)
+                $("#user_input_autocomplete_address").val(location_address);
             } else {
                 window.alert('No results found');
             }
         } else {
-            window.alert('Geocoder failed to get Location. Please try entering the latitude & longitude again. \nSytem message: ' + status);
+            //window.alert('Geocoder failed to get Location. Please try entering the latitude & longitude again. \nSytem message: ' + status);
         }
     });
 }
