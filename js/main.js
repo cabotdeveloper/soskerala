@@ -102,7 +102,7 @@ function drawPins(data) {
             'Issue last updated on: <b>' + data[i]['updated_date'] + '</b><br /><br />' +
             'Reported by: <b>' + data[i]['reported_by'] + '</b><br /><br />' +
             'Additional Notes: <b>' + data[i]['additional_notes'] + '</b><br /><br />' +
-            'Change Status: <select id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
+            'Change Status: <select ' + ((data[i]['issue_status'] == "0") ? 'disabled' : '') + ' id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
             '<option ' + ((data[i]['issue_status'] == "1") ? 'selected' : '') + ' value=1>Rescue In Progress</option>' +
             '<option ' + ((data[i]['issue_status'] == "2") ? 'selected' : '') + ' value=2>Rescue completed</option></select>' + '</b><br /><br />' +
             '<input type="button" class="btn btn-danger pin_popup_btn" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
