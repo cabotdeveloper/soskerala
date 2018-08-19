@@ -8,9 +8,9 @@
     $password = md5($_POST['password']);
     $user_type = $_POST['user_type'];
     
-    if($user_type == 1){                
-        session_start();
+    if($user_type == 1){                        
         $_SESSION['user_type'] = $user_type;
+        $_SESSION['user_name'] = 'Victim / Guest';
         echo "Success";
         exit;
     }
@@ -18,7 +18,7 @@
         $db = new SQLite3('../db/rescueDb.db');
         $sql ="SELECT * FROM users where user_name='".$user_name."' and password='".$password."' and user_type='".$user_type."'";
         $result = $db->querySingle($sql,true);
-        if(count($result)){
+        if(count($result)){            
             $_SESSION['user_name'] = $result['user_name'];
             $_SESSION['user_type'] = $result['user_type'];
             echo "Success";
