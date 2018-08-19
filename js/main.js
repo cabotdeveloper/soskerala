@@ -195,7 +195,7 @@ function editEntry(event) {
 }
 
 $(document).ready(function() {
-    
+    $('[data-toggle="tooltip"]').tooltip(); 
     var issue_table =$('#issue_table').DataTable({
         "ajax": "./ajax/data_table.php",
         "order": [

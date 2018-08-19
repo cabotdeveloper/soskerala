@@ -152,7 +152,7 @@
                   <label><input type="radio" id="radio_latlong" name="location" value="latandlong"><b>Enter Lattitude & Longitude</b></label>
                 </div>   -->
                 
-                  <p class="heading">Location Address&nbsp;<i class="fa fa-cog" title="Enter your location"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
+                  <p class="heading">Location Address&nbsp;<i class="fa fa-cog" data-toggle="tooltip" title="Enter your location"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
                              placeholder="Start typing your address...">
@@ -165,14 +165,14 @@
                     <input type="number" class="long" step="any" id="lon" name="lon"  placeholder="Enter longitude..." onblur="getLocationFromLatLng()">
                    </span>
                   
-                    <p class="heading">Number of persons&nbsp;<i class="fa fa-cog" title="Enter number of persons&nbsp;(e.g. 2, 3 persons, 2 adult, 1 child)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
+                    <p class="heading">Number of persons&nbsp;<i class="fa fa-cog" data-toggle="tooltip"  title="Enter number of persons&nbsp;(e.g. 2, 3 persons, 2 adult, 1 child)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="no_persons" name="no_persons">
 
-                    <p class="heading">Contact Person Name &nbsp;<i class="fa fa-cog" title="Enter contact person name"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
+                    <p class="heading">Contact Person Name &nbsp;<i class="fa fa-cog" data-toggle="tooltip" title="Enter contact person name"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="contact_name" name="contact_name">
-                    <p class="heading">Contact Numbers&nbsp;<i class="fa fa-cog" title="Enter contact Numbers&nbsp;(e.g. +919876543210 ,1-866-234-0607,+919876543210)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
+                    <p class="heading">Contact Numbers&nbsp;<i class="fa fa-cog" data-toggle="tooltip" title="Enter contact Numbers&nbsp;(e.g. +919876543210 ,1-866-234-0607,+919876543210)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="contact_mobile" name="contact_mobile">
-                    <p class="heading">Notes&nbsp;<i class="fa fa-cog" title="Enter additional information like present condition of the person,food availability etc.."><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
+                    <p class="heading">Notes&nbsp;<i class="fa fa-cog" data-toggle="tooltip" title="Enter additional information like present condition of the person,food availability etc.."><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <textarea id = "notes" name="notes"></textarea>
                     <input type="button"  value="Cancel" class="btn-secondary " data-dismiss="modal">
                     <input type="button" id="reset_btn" class="btn btn-warning" onclick="resetIssue()" value="Reset">
