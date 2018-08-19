@@ -11,15 +11,15 @@ if($_POST ){
     $data = $_POST;
     //echo '<pre>';print_r($data);exit;
     $db = new SQLite3('../db/rescueDb.db');
-    $cordinates = get_geocode($data['location']);
-    $location = ($cordinates['formatted_address'])?$cordinates['formatted_address']:$data['location'];
+   // $cordinates = get_geocode($data['location']);
+   // $location = ($cordinates['formatted_address'])?$cordinates['formatted_address']:$data['location'];
     $rptTime = date('d-M-Y H:i:s', time());
     $db->query("BEGIN TRANSACTION");
     if(isset($_SESSION["user_type"]) && ($_SESSION["user_type"] == 2 || $_SESSION["user_type"] == 3)) {
-        $sql = "UPDATE issues SET location_address = '".$location."',no_of_persons = '".$data['noPersons']."', contact_person_name = '".$data['contactName']."',contact_person_mobile = '".$data['contactMobile']."', additional_notes = '".$data['notes']."', issue_status = '".$data['status']."',updated_date = '".$rptTime."' where issue_id=".$data['issueId'];
+        $sql = "UPDATE issues SET no_of_persons = '".$data['noPersons']."', contact_person_name = '".$data['contactName']."',contact_person_mobile = '".$data['contactMobile']."', additional_notes = '".$data['notes']."', issue_status = '".$data['status']."',updated_date = '".$rptTime."' where issue_id=".$data['issueId'];
     }   
     else{
-        $sql = "UPDATE issues SET location_address = '".$location."',no_of_persons = '".$data['noPersons']."', contact_person_name = '".$data['contactName']."',contact_person_mobile = '".$data['contactMobile']."', additional_notes = '".$data['notes']."',updated_date = '".$rptTime."' where issue_id=".$data['issueId'];
+        $sql = "UPDATE issues SET no_of_persons = '".$data['noPersons']."', contact_person_name = '".$data['contactName']."',contact_person_mobile = '".$data['contactMobile']."', additional_notes = '".$data['notes']."',updated_date = '".$rptTime."' where issue_id=".$data['issueId'];
     }
     $res= $db->query($sql);
     $db->query("COMMIT");

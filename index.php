@@ -91,7 +91,8 @@
     <div id="logged_dt">
       Logged in as : <span id="loggedin_user"></span> 
       &nbsp;&nbsp;<a id="change_btn" onclick="changeUser()">Change user role</a>
-      <button class="btn btn-primary rpt-issue-btn" onclick="reportIssue()">Report Issue</button> 
+      
+      <button class="btn btn-primary rpt-issue-btn" onclick="reportIssue()">Help Me !</button> 
     </div>
     <div id="infowindow-content">
           <img src="" width="16" height="16" id="place-icon">
@@ -108,27 +109,31 @@
           
             <div  class="modal-body" style="height:100%">
                 <form action="" id="entryForm" method="post" onsubmit="event.preventDefault()">
-                <div class="radio">
+                <!-- <div class="radio">
                   <label><input type="radio" id="radio_location" name="location" value="location" checked><b>Enter Location</b></label>
                   <label><input type="radio" id="radio_latlong" name="location" value="latandlong"><b>Enter Lattitude & Longitude</b></label>
-                </div>  
+                </div>   -->
                 
-                  <p class="heading">Location Address</p>
+                  <p class="heading">Location Address&nbsp;<i class="fa fa-cog" title="Enter your location"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
                              placeholder="Start typing your address...">
-                    <input type="number" step="any" id="lat" name="lat" disabled placeholder="Enter latitude..." onblur="getLocation()">
-                    <input type="number" class="long" step="any" id="lon" name="lon" disabled placeholder="Enter longitude..." onblur="getLocation()">
-                    <p class="heading">Number of persons</p>
+                    <input type="number" step="any" id="lat" name="lat"  placeholder="Enter latitude...">
+                    <input type="number" class="long" step="any" id="lon" name="lon"  placeholder="Enter longitude...">
+               
+                  
+                    <p class="heading">Number of persons&nbsp;<i class="fa fa-cog" title="Enter number of persons&nbsp;(e.g. 2, 3 persons, 2 adult, 1 child)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="no_persons" name="no_persons">
-                    <p class="heading">Contact Person Name</p>
+
+                    <p class="heading">Contact Person Name &nbsp;<i class="fa fa-cog" title="Enter contact person name"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="contact_name" name="contact_name">
-                    <p class="heading">Contact Number</p>
+                    <p class="heading">Contact Numbers&nbsp;<i class="fa fa-cog" title="Enter contact Numbers&nbsp;(e.g. +919876543210 ,1-866-234-0607,+919876543210)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="contact_mobile" name="contact_mobile">
-                    <p class="heading">Notes</p>
+                    <p class="heading">Notes&nbsp;<i class="fa fa-cog" title="Enter additional information like present condition of the person,food availability etc.."><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <textarea id = "notes" name="notes"></textarea>
                     <input type="button"  value="Cancel" class="btn-secondary add_btns" data-dismiss="modal">
-                    <input type="submit" onclick="saveEntry(event)" value="Submit" class="btn-primary add_btns">
+               
+                    <input type="submit" onclick="saveEntry(event)" id ="save_modal_btn_id" value="Submit" class="btn-primary add_btns">
                     
                 </form>            
             
@@ -137,8 +142,8 @@
         </div>
     </div>
     </div>
-
-   <div>
+   <!--  <div id="wait" style="display: none; width: 69px; height: 89px; border: 1px solid black; position: absolute; top: 50%; left: 50%; padding: 2px;"><img src="css/images/ajax-loader7.gif" width="64" height="64"><br>Loading..</div>
+       <div> -->
           <a data-toggle="modal" data-target="#form" class="float-button" style="cursor:pointer">+</a>
         </div>
         <div id="formEdit" class="modal fade">
@@ -146,24 +151,27 @@
           <div class="modal-content">
           
             <div  class="modal-body" style="height:100%">
-                <form action="" id="entryForm" method="post">                 
-                <p class="heading">Location</p>
+                <form action="" id="editForm" method="post">                 
+                <p class="heading">Location&nbsp;<i class="fa fa-cog" title="Enter your location"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input id="locationedit" type="text" value="" disabled placeholder="Enter a location" name="location" required>                    
                     <span style="width:49%;float:left;">
                       Latitude :<br>
-                      <input type="number" step="any" id="latitude" name="latitude" disabled placeholder="Enter latitude..." onblur="getLocationFromLatLng()">
+                      <input type="number" step="any" id="latitude" name="latitude" disabled placeholder="Enter latitude..." >
                     </span>
                     <span style="width:49%;float:right;">
                       Longitude :<br>
-                      <input type="number" step="any" id="longitude" name="longitude" disabled placeholder="Enter longitude..." onblur="getLocationFromLatLng()">
+                      <input type="number" step="any" id="longitude" name="longitude" disabled placeholder="Enter longitude..." >
                     </span>
-                    <p class="heading">Number of persons</p>
+                    
+      
+                                 
+                    <p class="heading">Number of persons&nbsp;<i class="fa fa-cog" title="Enter number of persons&nbsp;(e.g. 2, 3 persons, 2 adult, 1 child)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="no_personsedit" name="no_persons">
-                    <p class="heading">Contact Person Name</p>
+                    <p class="heading">Contact Person Name &nbsp;<i class="fa fa-cog" title="Enter contact person name"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="contact_nameedit" name="contact_name">
-                    <p class="heading">Contact Number</p>
+                    <p class="heading">Contact Numbers&nbsp;<i class="fa fa-cog" title="Enter contact Numbers&nbsp;(e.g. +919876543210 ,1-866-234-0607,+919876543210)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="contact_mobileedit" name="contact_mobile">
-                    <p class="heading">Notes</p>
+                    <p class="heading">Notes&nbsp;<i class="fa fa-cog" title="Enter additional information like present condition of the person,food availability etc.."><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <textarea id = "notesedit" name="notes"></textarea>
                     <p class="heading">Status</p>    
                       <select id="mySatus" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" >
