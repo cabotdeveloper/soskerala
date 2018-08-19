@@ -47,7 +47,8 @@ function getLocationFromLatLng() {
 function drawPins(data) {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
-        center: new google.maps.LatLng(10.1059814, 76.3192878)
+        center: new google.maps.LatLng(10.1059814, 76.3192878),
+        fullscreenControl: true
     });
 
     geocoder = new google.maps.Geocoder();
