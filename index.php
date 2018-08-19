@@ -118,9 +118,14 @@
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
                              placeholder="Start typing your address...">
+                   <span style="width:49%;float:left;">
+                      Latitude :<br>
                     <input type="number" step="any" id="lat" name="lat"  placeholder="Enter latitude..." onblur="getLocationFromLatLng()">
+                    </span>
+                     <span style="width:49%;float:right;">
+                      Longitude :<br>
                     <input type="number" class="long" step="any" id="lon" name="lon"  placeholder="Enter longitude..." onblur="getLocationFromLatLng()">
-               
+                   </span>
                   
                     <p class="heading">Number of persons&nbsp;<i class="fa fa-cog" title="Enter number of persons&nbsp;(e.g. 2, 3 persons, 2 adult, 1 child)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <input type="text" id="no_persons" name="no_persons">
@@ -131,9 +136,9 @@
                     <input type="text" id="contact_mobile" name="contact_mobile">
                     <p class="heading">Notes&nbsp;<i class="fa fa-cog" title="Enter additional information like present condition of the person,food availability etc.."><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <textarea id = "notes" name="notes"></textarea>
-                    <input type="button"  value="Cancel" class="btn-secondary add_btns" data-dismiss="modal">
-               
-                    <input type="submit" onclick="saveEntry(event)" id ="save_modal_btn_id" value="Submit" class="btn-primary add_btns">
+                    <input type="button"  value="Cancel" class="btn-secondary " data-dismiss="modal">
+                    <input type="button" id="delete_btn" class="btn btn-warning" onclick="resetIssue()" value="Reset">
+                    <input type="submit" onclick="saveEntry(event)" id ="save_modal_btn_id" value="Submit" class="btn-primary ">
                     
                 </form>            
             

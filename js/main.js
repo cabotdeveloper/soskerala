@@ -452,5 +452,17 @@ function changeUser(){
 
 }
 function reportIssue(){
+
     $("#add_button").click();
+}
+function resetIssue(){
+
+    $('#user_input_autocomplete_address').val('');
+    $("#lat").val('');
+    $("#lon").val(''); 
+    $('#no_persons').val('');
+    $('#contact_name').val('');
+    $('#contact_mobile').val('');    
+    $('#notes').val('');
+      
 }
