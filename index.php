@@ -175,7 +175,7 @@
                     <p class="heading">Notes&nbsp;<i class="fa fa-cog" title="Enter additional information like present condition of the person,food availability etc.."><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
                     <textarea id = "notes" name="notes"></textarea>
                     <input type="button"  value="Cancel" class="btn-secondary " data-dismiss="modal">
-                    <input type="button" id="delete_btn" class="btn btn-warning" onclick="resetIssue()" value="Reset">
+                    <input type="button" id="reset_btn" class="btn btn-warning" onclick="resetIssue()" value="Reset">
                     <input type="submit" onclick="saveEntry(event)" id ="save_modal_btn_id" value="Submit" class="btn-primary ">
                     
                 </form>            
