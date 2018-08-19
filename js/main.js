@@ -107,7 +107,7 @@ function drawPins(data) {
             'Issue last updated on: <b>' + data[i]['updated_date'] + '</b><br /><br />' +
             'Reported by: <b>' + data[i]['reported_by'] + '</b><br /><br />' +
             'Additional Notes: <b>' + data[i]['additional_notes'] + '</b><br /><br />' +
-            'Change Status: <select ' + ((data[i]['issue_status'] == "0") ? 'disabled' : '') + ' id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
+            'Change Status: <select ' + ((localStorage.getItem("user_type") == "1") ? 'disabled' : '') + ' id=change_status_' + data[i]['issue_id'] + '><option ' + ((data[i]['issue_status'] == "0") ? 'selected' : '') + ' value=0>To be rescued</option>' +
             '<option ' + ((data[i]['issue_status'] == "1") ? 'selected' : '') + ' value=1>Rescue In Progress</option>' +
             '<option ' + ((data[i]['issue_status'] == "2") ? 'selected' : '') + ' value=2>Rescue completed</option></select>' + '</b><br /><br />' +
             '<input type="button" style="width:20%; margin-left:5% !important" class="btn btn-danger pin_popup_btn" onclick=deleteIssue(' + data[i]['issue_id'] + ') value="Delete">'+
@@ -279,7 +279,7 @@ $(document).ready(function() {
         if ( data['latitude'] != '' && data['longitude'] != '') {
             var myLatlng = new google.maps.LatLng(data['latitude'], data['longitude']);
             $('html, body').scrollTop(0);
-            map.setZoom(17); 
+            map.setZoom(10); 
             map.panTo(myLatlng);
         } else {
             alert("There is no marker pin for this location, because Google API did not provide latitude or longitude for this location");
