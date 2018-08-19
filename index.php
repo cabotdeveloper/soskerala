@@ -172,11 +172,7 @@
           
             <div  class="modal-body" style="height:100%">
                 <form action="" id="editForm" method="post">                 
-<<<<<<< HEAD
-                <p class="heading">Location</p>
-=======
                 <p class="heading">Location&nbsp;<i class="fa fa-cog" title="Enter your location"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
->>>>>>> 4bfc1bb7c01ed248e0adf65a0a18b8fbe458690b
                     <input id="locationedit" type="text" value="" disabled placeholder="Enter a location" name="location" required>                    
                     <span style="width:49%;float:left;">
                       Latitude :<br>
