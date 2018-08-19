@@ -118,8 +118,8 @@
  
                       <input type="text" id="user_input_autocomplete_address" name="user_input_autocomplete_address"
                              placeholder="Start typing your address...">
-                    <input type="number" step="any" id="lat" name="lat"  placeholder="Enter latitude...">
-                    <input type="number" class="long" step="any" id="lon" name="lon"  placeholder="Enter longitude...">
+                    <input type="number" step="any" id="lat" name="lat"  placeholder="Enter latitude..." onblur="getLocationFromLatLng()">
+                    <input type="number" class="long" step="any" id="lon" name="lon"  placeholder="Enter longitude..." onblur="getLocationFromLatLng()">
                
                   
                     <p class="heading">Number of persons&nbsp;<i class="fa fa-cog" title="Enter number of persons&nbsp;(e.g. 2, 3 persons, 2 adult, 1 child)"><img src="css/images/informacion_0.png" class="tooltip_img"></i></p>
