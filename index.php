@@ -19,10 +19,13 @@
           $("#loggedin_user").text(localStorage.getItem("user_name"));        
       });       
       function getData() {
+        var user =localStorage.getItem("user_name");
         $.ajax({
           url: "./ajax/get_all_issues.php",
           async: true,
           dataType: 'json',
+          type: "POST",
+          data :"user="+user,
           success: function (data) {
             console.log(data);
             // $.each(data, function(index, value){
@@ -30,7 +33,7 @@
             // })
             
           }
-        }); 
+        });  
         //Location autocomplete
         var input = document.getElementById('user_input_autocomplete_address');                 
         var autocomplete = new google.maps.places.Autocomplete(input); 
@@ -109,7 +112,7 @@
           <div class="modal-body">
             <label for="user_type">Select user type :</label>
             <select class="form-control" id="user_type" onchange="userChange()">
-              <option value=1 selected>Victim/Guest</option>
+              <option value=1 selected>Victim / Guest</option>
               <option value=2>Rescuer</option>
               <option value=3>Moderator</option>            
             </select><br>
