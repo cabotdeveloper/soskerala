@@ -118,17 +118,16 @@ function saveEntry(event) {
 
     event.preventDefault();
     var location = $('#user_input_autocomplete_address').val();
-    
-    if (location === '') {
+    var latitude = $("#lat").val();
+    var longitude = $("#lon").val();
+    if (!(location === '' || (latitude == '' && longitude ==''))) {
         alert("Please enter location address before you submit.");
         return;
     }
 
     var noPersons = $('#no_persons').val();
     var contactName = $('#contact_name').val();
-    var contactMobile = $('#contact_mobile').val();
-    var latitude = $("#lat").val();
-    var longitude = $("#lon").val();
+    var contactMobile = $('#contact_mobile').val();    
     var notes = $('#notes').val();
     $.post("./ajax/add_issue.php", 'location=' + location + '&noPersons=' + noPersons + '&contactName=' + contactName + '&contactMobile=' + contactMobile + '&notes=' + notes + '&latitude='+latitude+ '&longitude='+ longitude, function(result, status, xhr) {
             if (status.toLowerCase() == "error".toLowerCase()) {
@@ -146,14 +145,14 @@ function saveEntry(event) {
 function editEntry(event) {
 
     event.preventDefault();
-    var location=$('#locationedit').val();
+    // var location=$('#locationedit').val();    
     var noPersons=$('#no_personsedit').val();
     var contactName=$('#contact_nameedit').val();
     var contactMobile=$('#contact_mobileedit').val();
     var notes = $('#notesedit').val();
     var status = $('#mySatus').val();
     var issueId = $('#issueId').val();
-    $.post("./ajax/edit_issue.php",'location='+location+'&noPersons='+noPersons+'&contactName='+contactName+'&contactMobile='+contactMobile+'&notes='+notes+'&status='+status+'&issueId='+issueId,function(result,status,xhr) {
+    $.post("./ajax/edit_issue.php",'noPersons='+noPersons+'&contactName='+contactName+'&contactMobile='+contactMobile+'&notes='+notes+'&status='+status+'&issueId='+issueId,function(result,status,xhr) {
             if( status.toLowerCase()=="error".toLowerCase() )
             { 
                 alert("An Error Occurred.."); 
@@ -266,7 +265,16 @@ $(document).ready(function() {
             return;
         }
     });
-
+    $("#radio_location").click(function(){
+        $("#lat").attr("disabled","disabled");
+        $("#lon").attr("disabled","disabled");
+        $("#user_input_autocomplete_address").removeAttr("disabled");        
+    });
+    $("#radio_latlong").click(function(){
+        $("#user_input_autocomplete_address").attr("disabled","disabled");        
+        $("#lat").removeAttr("disabled");
+        $("#lon").removeAttr("disabled");
+    });
 });
 function editClick(id){
  //$('#issue_table tbody').on( 'click', 'button', function () {
@@ -282,6 +290,8 @@ function editClick(id){
                 $("#formEdit").modal('show');
                 var data =$.parseJSON(result);
                 $('#locationedit').val(data.location_address);
+                $('#latitude').val(data.latitude);
+                $('#longitude').val(data.longitude);
                 $('#no_personsedit').val(data.no_of_persons);
                 $('#contact_nameedit').val(data.contact_person_name);
                 $('#contact_mobileedit').val(data.contact_person_mobile);
@@ -434,4 +444,7 @@ function changeUser(){
 }
 function reportIssue(){
     $("#add_button").click();
+}
+function getLocation(){
+
 }
