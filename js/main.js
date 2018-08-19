@@ -203,8 +203,9 @@ function editEntry(event) {
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip(); 
+    var user =localStorage.getItem("user_name");
     var issue_table =$('#issue_table').DataTable({
-        "ajax": "./ajax/data_table.php",
+        "ajax": "./ajax/data_table.php?user="+user,
         "order": [
             [4, "desc"]
         ],
@@ -403,7 +404,7 @@ function userChange(){
 function modalClose(){
     var userType = $("#user_type option:selected").val();
     if(userType == 1){
-        $("#loggedin_user").text('Victim/Guest');
+        $("#loggedin_user").text('Victim / Guest');
         $('#loginModal').modal('hide');
     }
     else if($("#loggedin_user").text() == ''){
@@ -419,10 +420,10 @@ function modalClose(){
 function login(){
     var userType = $("#user_type option:selected").val();    
     if(userType == 1){
-        $("#loggedin_user").text('Victim/Guest');
+        $("#loggedin_user").text('Victim / Guest');
         localStorage.setItem("user_type", userType);
-        localStorage.setItem("user_name", 'Victim/Guest');
-        var userName = 'Victim/Guest';
+        localStorage.setItem("user_name", 'Victim / Guest');
+        var userName = 'Victim / Guest';
         var password = '';
         //$('#loginModal').modal('hide');
     }    
@@ -452,6 +453,7 @@ function login(){
                     $('#loginModal').modal('hide');
                     localStorage.setItem("user_type", userType);
                     localStorage.setItem("user_name", userName);
+                    window.location.reload();
                     return;
                 }
                 else{
