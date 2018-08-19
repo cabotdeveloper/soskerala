@@ -397,12 +397,13 @@ function userChange(){
 }
 function modalClose(){
     var userType = $("#user_type option:selected").val();
-    if(userType == 1){
-        $("#loggedin_user").text('Victim / Guest');
-        $('#loginModal').modal('hide');
+    if(userType == 1 && $("#loggedin_user").text() == ''){ 
+        var userName = 'Victim / Guest';
+        var password = ''; 
+        loginRequest(userName,password,userType);
     }
     else if($("#loggedin_user").text() == ''){
-        alert("Please select any user");
+        alert("Please select any user & login");
         return;
     }
     else{
@@ -412,14 +413,10 @@ function modalClose(){
 }
 
 function login(){
-    var userType = $("#user_type option:selected").val();    
+    var userType = $("#user_type option:selected").val(); 
     if(userType == 1){
-        $("#loggedin_user").text('Victim / Guest');
-        localStorage.setItem("user_type", userType);
-        localStorage.setItem("user_name", 'Victim / Guest');
         var userName = 'Victim / Guest';
-        var password = '';
-        //$('#loginModal').modal('hide');
+        var password = '';        
     }    
     else{
         var userName = $("#user_name").val();
@@ -427,39 +424,43 @@ function login(){
         if(!userName || !password){
             alert("Incorrect user name and password");
             return;
-        }                
+        }     
     }
+    loginRequest(userName,password,userType);       
+}
+function loginRequest(userName,password,userType){
     $.post("./ajax/login.php",
-        {
-            user_name : userName,
-            password : password,
-            user_type : userType
-        },
-        function(result,status){
-            if( status.toLowerCase()=="error".toLowerCase() )
-            { 
-                alert("An Error Occurred.."); 
+    {
+        user_name : userName,
+        password : password,
+        user_type : userType
+    },
+    function(result,status){
+        if( status.toLowerCase()=="error".toLowerCase() )
+        { 
+            alert("An Error Occurred.."); 
+        }
+        else {
+            if(result == 'Success'){
+                $("#loggedin_user").text(userName);
+                $("#login_div").hide();
+                $('#loginModal').modal('hide');
+                localStorage.setItem("user_type", userType);
+                localStorage.setItem("user_name", userName);
+                window.location.reload();
+                return;
             }
-            else {
-                if(result == 'Success'){
-                    $("#loggedin_user").text(userName);
-                    $("#login_div").hide();
-                    $('#loginModal').modal('hide');
-                    localStorage.setItem("user_type", userType);
-                    localStorage.setItem("user_name", userName);
-                    window.location.reload();
-                    return;
-                }
-                else{
-                    alert("Incorrect login");
-                    return;
-                }                
-            }
-        })
-        .fail(function(){ 
-            alert("something went wrong. Please try again");
-            return;
-        });    
+            else{
+                alert("Incorrect login");
+                return;
+            }                
+        }
+    })
+    .fail(function(){ 
+        alert("something went wrong. Please try again");
+        return;
+    }); 
+    return;
 }
 function changeUser(){
     $('#loginModal').modal('show');

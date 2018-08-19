@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  if(isset($_SESSION['user_type'])){?>
+    <script>localStorage.setItem("user_type", <?=$_SESSION['user_type']?>);
+    localStorage.setItem("user_name", "<?=$_SESSION['user_name']?>");</script>
+  <?php
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
