@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <div id="map" style="height:50%; vertical-align:bottom"></div>
+    <div id="map" style="height:50%; width:100%; vertical-align:bottom"></div>
     <div id="logged_dt">
       Logged in as : <span id="loggedin_user"></span> 
       &nbsp;&nbsp;<a id="change_btn" onclick="changeUser()">Change user role</a>
